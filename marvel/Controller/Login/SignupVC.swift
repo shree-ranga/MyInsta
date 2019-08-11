@@ -12,9 +12,13 @@ import KeychainAccess
 class SignupVC: UIViewController {
     
     var signupView: SignupView!
+    
     let imagePicker = UIImagePickerController()
-    let api = RestManager()
+    
+//    let API = RestManager()
+    
     let keyChain = Keychain(server: BASE_URL, protocolType: .http)
+    
     var isImageSelected: Bool = false
     
     override func viewDidLoad() {
@@ -96,23 +100,23 @@ extension SignupVC: SignupViewDelegate {
             body.append("Content-Disposition: form-data; name=\"full_name\"\r\n\r\n")
             body.append("\(fullName.lowercased())")
             
-            api.httpBody = body
+            API.httpBody = body
             
-            api.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
-            api.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
-            api.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
+            API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
+            API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
+            API.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
         } else {
-            api.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
-            api.httpBodyParameters.setValue(value: fullName.lowercased(), forKey: "full_name")
-            api.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
-            api.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
+            API.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
+            API.httpBodyParameters.setValue(value: fullName.lowercased(), forKey: "full_name")
+            API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
+            API.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
             
-            api.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+            API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         }
         
         guard let registerUrl = URL(string: REGISTER_URL) else { return }
         
-        api.makeRequest(toURL: registerUrl, withHttpMethod: .post) { (results) in
+        API.makeRequest(toURL: registerUrl, withHttpMethod: .post) { (results) in
             if let error = results.error {
                 print(error.localizedDescription)
             }
@@ -130,12 +134,12 @@ extension SignupVC: SignupViewDelegate {
                     print(error.localizedDescription)
                 }
                 
-                self.api.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-                self.api.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
-                self.api.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
+                API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+                API.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
+                API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
                 let authTokenUrl = URL(string: REGISTER_URL + "api-auth-token/")!
                 
-                self.api.makeRequest(toURL: authTokenUrl, withHttpMethod: .post, completion: { (res) in
+                API.makeRequest(toURL: authTokenUrl, withHttpMethod: .post, completion: { (res) in
                     if let error = res.error {
                         print(error.localizedDescription)
                     }

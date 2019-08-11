@@ -10,6 +10,8 @@ import Foundation
 
 final class RestManager {
     
+    static let shared = RestManager()
+    
     // MARK: headers, query, and body parameters (all client side)
     var requestHttpHeaders = RestEntity()
     var urlQueryParameters = RestEntity()
@@ -73,7 +75,8 @@ final class RestManager {
         request.httpBody = httpBody
         
         // time out interval
-        request.timeoutInterval = 60
+        request.timeoutInterval = 60 * 5 // 5 minutes
+        
         return request
     }
     

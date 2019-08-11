@@ -12,12 +12,10 @@ import KeychainAccess
 class LoginVC: UIViewController {
     
     var loginView: LoginView!
-    var api: RestManager!
     let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        api = RestManager()
         setupViews()
         loginView.delegate = self
     }
@@ -36,11 +34,11 @@ extension LoginVC: LoginViewDelegate {
         guard let password = loginView.passwordTextField.text else { return }
         
         guard let loginUrl = URL(string: LOGIN_URL) else { return }
-        api.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-        api.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
-        api.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        API.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
+        API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
         
-        api.makeRequest(toURL: loginUrl, withHttpMethod: .post) { (res) in
+        API.makeRequest(toURL: loginUrl, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
             }

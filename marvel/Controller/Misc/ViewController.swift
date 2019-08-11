@@ -33,8 +33,8 @@ class ViewController: UIViewController {
         return button
     }()
     
-    let api = RestManager()
-    let keyChain = Keychain(server: "http://localhost:8000", protocolType: .http)
+//    let API = RestManager()
+    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,11 +97,11 @@ class ViewController: UIViewController {
         body.append("Content-Disposition: form-data; name=\"full_name\"\r\n\r\n")
         body.append("\(fullNameValue)")
         
-        api.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
-        api.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
-        api.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
-        api.httpBody = body
-        api.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+        API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
+        API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
+        API.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
+        API.httpBody = body
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
             }
@@ -122,11 +122,11 @@ class ViewController: UIViewController {
     func login() {
         guard let url = URL(string: LOGIN_URL) else { return }
         
-        api.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-        api.httpBodyParameters.setValue(value: "hulk", forKey: "username")
-        api.httpBodyParameters.setValue(value: "hulk123", forKey: "password")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        API.httpBodyParameters.setValue(value: "hulk", forKey: "username")
+        API.httpBodyParameters.setValue(value: "hulk123", forKey: "password")
         
-        api.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
             }
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
     // MARK: - Get some data from the server
     func getSomething() {
         guard let url = URL(string: "http://localhost:8000/boring/users/6/") else { return }
-        api.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
+        API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
             
             if let error = res.error {
                 print(error.localizedDescription)
@@ -176,7 +176,7 @@ class ViewController: UIViewController {
                 
                 let profileData = dict["profile"] as! Dictionary<String, AnyObject>
                 
-                self.api.getData(fromURL: URL(string: profileData["avatar"] as! String)!, completion: { (data) in
+                API.getData(fromURL: URL(string: profileData["avatar"] as! String)!, completion: { (data) in
                     guard let data = data else { return }
                     
                     DispatchQueue.main.async {
@@ -195,11 +195,10 @@ class ViewController: UIViewController {
         
         guard let logoutUrl = URL(string: LOGOUT_URL) else { return }
         
-        api.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
-        api.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-        api.httpBodyParameters.setValue(value: "\(token!)", forKey: "token")
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
         
-        api.makeRequest(toURL: logoutUrl, withHttpMethod: .post) { (res) in
+        // first delete the token from the server
+        API.makeRequest(toURL: logoutUrl, withHttpMethod: .delete) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
             }
@@ -208,7 +207,9 @@ class ViewController: UIViewController {
                 print(response.httpStatusCode)
             }
             
+            // delete the token from the keychain
             self.keyChain["auth_token"] = nil
+            
             DispatchQueue.main.async {
                 let loginVC = LoginVC()
                 self.present(loginVC, animated: true, completion: nil)
