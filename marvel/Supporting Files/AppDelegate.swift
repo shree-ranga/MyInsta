@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import KeychainAccess
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let keyChain = Keychain(server: "http://localhost:8000", protocolType: .http)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        do {
+            let token = try keyChain.get("auth_token")
+            if token != nil {
+                let mainVC = ViewController()
+                window?.rootViewController = mainVC
+            } else {
+                let mainVC = LoginVC()
+                window?.rootViewController = mainVC
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+//        let mainVC = ViewController()
+//        window?.rootViewController = mainVC
         return true
     }
 

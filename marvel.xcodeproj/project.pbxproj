@@ -7,21 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2997ED7AB531FE8814168184 /* Pods_marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C63C8C614660B5B2386C383 /* Pods_marvel.framework */; };
+		7443FCF222F8079D00757A33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF122F8079D00757A33 /* LoginView.swift */; };
+		7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF522F80A7A00757A33 /* LoginVC.swift */; };
+		7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456052822FE6033000C59F3 /* MultiPartFormBody.swift */; };
+		7462E6A922F92763002D4C19 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6A822F92763002D4C19 /* Protocols.swift */; };
+		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
+		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
 		7488208822CD941E0026999D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208722CD941E0026999D /* AppDelegate.swift */; };
 		7488208A22CD941E0026999D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208922CD941E0026999D /* ViewController.swift */; };
-		7488208D22CD941E0026999D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7488208B22CD941E0026999D /* Main.storyboard */; };
 		7488208F22CD941F0026999D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7488208E22CD941F0026999D /* Assets.xcassets */; };
 		7488209222CD941F0026999D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7488209022CD941F0026999D /* LaunchScreen.storyboard */; };
+		748820A522CDA3AD0026999D /* ServerResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A022CDA3AD0026999D /* ServerResults.swift */; };
+		748820A622CDA3AD0026999D /* RestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A122CDA3AD0026999D /* RestEntity.swift */; };
+		748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A222CDA3AD0026999D /* ServerResponse.swift */; };
+		748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A322CDA3AD0026999D /* HttpMethod.swift */; };
+		748820A922CDA3AD0026999D /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A422CDA3AD0026999D /* RestManager.swift */; };
+		748820AC22CDAE250026999D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820AB22CDAE250026999D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0405C498BE1A2DAB9627D6 /* Pods-marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.release.xcconfig"; sourceTree = "<group>"; };
+		7443FCF122F8079D00757A33 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7443FCF522F80A7A00757A33 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		7456052822FE6033000C59F3 /* MultiPartFormBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormBody.swift; sourceTree = "<group>"; };
+		7462E6A822F92763002D4C19 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		7488208422CD941E0026999D /* marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7488208722CD941E0026999D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7488208922CD941E0026999D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7488208C22CD941E0026999D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7488208E22CD941F0026999D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7488209122CD941F0026999D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7488209322CD941F0026999D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		748820A022CDA3AD0026999D /* ServerResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResults.swift; sourceTree = "<group>"; };
+		748820A122CDA3AD0026999D /* RestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestEntity.swift; sourceTree = "<group>"; };
+		748820A222CDA3AD0026999D /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
+		748820A322CDA3AD0026999D /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		748820A422CDA3AD0026999D /* RestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
+		748820AB22CDAE250026999D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7C63C8C614660B5B2386C383 /* Pods_marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +55,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2997ED7AB531FE8814168184 /* Pods_marvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		171EF8C532A74818206DCC13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C63C8C614660B5B2386C383 /* Pods_marvel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7443FCF322F808D600757A33 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7443FCF122F8079D00757A33 /* LoginView.swift */,
+				7462E6AA22F93901002D4C19 /* SignupView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7443FCF422F80A6D00757A33 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7443FCF522F80A7A00757A33 /* LoginVC.swift */,
+				7462E6AC22F9390E002D4C19 /* SignupVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7443FCF722F80A8D00757A33 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				7488208922CD941E0026999D /* ViewController.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		7488207B22CD941E0026999D = {
 			isa = PBXGroup;
 			children = (
 				7488208622CD941E0026999D /* marvel */,
 				7488208522CD941E0026999D /* Products */,
+				F792360D7DB6E238D8CD8F8A /* Pods */,
+				171EF8C532A74818206DCC13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +117,80 @@
 		7488208622CD941E0026999D /* marvel */ = {
 			isa = PBXGroup;
 			children = (
+				748820AA22CDA3BD0026999D /* Utils */,
+				7488209F22CDA3AD0026999D /* NetworkLayer */,
+				7488209C22CD95570026999D /* Model */,
+				7488209B22CD95470026999D /* View */,
+				7488209A22CD95340026999D /* Controller */,
+				7488209922CD95270026999D /* Supporting Files */,
+			);
+			path = marvel;
+			sourceTree = "<group>";
+		};
+		7488209922CD95270026999D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				7488208722CD941E0026999D /* AppDelegate.swift */,
-				7488208922CD941E0026999D /* ViewController.swift */,
-				7488208B22CD941E0026999D /* Main.storyboard */,
 				7488208E22CD941F0026999D /* Assets.xcassets */,
 				7488209022CD941F0026999D /* LaunchScreen.storyboard */,
 				7488209322CD941F0026999D /* Info.plist */,
 			);
-			path = marvel;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7488209A22CD95340026999D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7443FCF422F80A6D00757A33 /* Login */,
+				7443FCF722F80A8D00757A33 /* Misc */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7488209B22CD95470026999D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7443FCF322F808D600757A33 /* Login */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7488209C22CD95570026999D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7488209F22CDA3AD0026999D /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				748820A022CDA3AD0026999D /* ServerResults.swift */,
+				748820A122CDA3AD0026999D /* RestEntity.swift */,
+				748820A222CDA3AD0026999D /* ServerResponse.swift */,
+				748820A322CDA3AD0026999D /* HttpMethod.swift */,
+				748820A422CDA3AD0026999D /* RestManager.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		748820AA22CDA3BD0026999D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				748820AB22CDAE250026999D /* Constants.swift */,
+				7462E6A822F92763002D4C19 /* Protocols.swift */,
+				7456052822FE6033000C59F3 /* MultiPartFormBody.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F792360D7DB6E238D8CD8F8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */,
+				4F0405C498BE1A2DAB9627D6 /* Pods-marvel.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +200,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7488209622CD941F0026999D /* Build configuration list for PBXNativeTarget "marvel" */;
 			buildPhases = (
+				C491393D6A77518C1F9B0C04 /* [CP] Check Pods Manifest.lock */,
 				7488208022CD941E0026999D /* Sources */,
 				7488208122CD941E0026999D /* Frameworks */,
 				7488208222CD941E0026999D /* Resources */,
+				2850F2C4E169F1F2C1940F4C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,33 +255,83 @@
 			files = (
 				7488209222CD941F0026999D /* LaunchScreen.storyboard in Resources */,
 				7488208F22CD941F0026999D /* Assets.xcassets in Resources */,
-				7488208D22CD941E0026999D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2850F2C4E169F1F2C1940F4C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-marvel/Pods-marvel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-marvel/Pods-marvel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C491393D6A77518C1F9B0C04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-marvel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7488208022CD941E0026999D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
+				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,
+				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
+				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
+				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
+				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
+				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,
+				7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */,
+				748820A922CDA3AD0026999D /* RestManager.swift in Sources */,
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
+				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
+				748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */,
+				748820AC22CDAE250026999D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7488208B22CD941E0026999D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7488208C22CD941E0026999D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7488209022CD941F0026999D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,10 +461,13 @@
 		};
 		7488209722CD941F0026999D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = marvel/Info.plist;
+				DEVELOPMENT_TEAM = P23H3C5VRB;
+				INFOPLIST_FILE = "$(SRCROOT)/marvel/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -297,10 +481,13 @@
 		};
 		7488209822CD941F0026999D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F0405C498BE1A2DAB9627D6 /* Pods-marvel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = marvel/Info.plist;
+				DEVELOPMENT_TEAM = P23H3C5VRB;
+				INFOPLIST_FILE = "$(SRCROOT)/marvel/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
