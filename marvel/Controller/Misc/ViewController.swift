@@ -33,13 +33,18 @@ class ViewController: UIViewController {
         return button
     }()
     
-//    let API = RestManager()
     let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         //        uploadImage()
+        API.getData(fromURL: URL(string: (BASE_URL + "media/photo3373271114.jpg"))!, completion: { (data) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: data)
+            }
+        })
     }
     
     func setupViews() {

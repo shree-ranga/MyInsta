@@ -8,21 +8,19 @@
 
 import Foundation
 
-final class RestManager {
-    
-    static let shared = RestManager()
-    
+final class API {
+
     // MARK: headers, query, and body parameters (all client side)
-    var requestHttpHeaders = RestEntity()
-    var urlQueryParameters = RestEntity()
-    var httpBodyParameters = RestEntity()
+    static var requestHttpHeaders = RestEntity()
+    static var urlQueryParameters = RestEntity()
+    static var httpBodyParameters = RestEntity()
     
     // MARK: Reuest body data
-    var httpBody: Data?
+    static var httpBody: Data?
     
     // MARK: Private methods
     // MARK: Add URL query parameters
-    private func addURLQueryParameters(toURL url: URL) -> URL {
+    static private func addURLQueryParameters(toURL url: URL) -> URL {
         // Make sure there are query parameters to add
         if urlQueryParameters.totalItems() > 0 {
             guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return url }
@@ -42,7 +40,7 @@ final class RestManager {
     // MARK: Get Http body
     // TODO: Deal with media type data
     // TODO: Deal with form type data
-    private func getHttpBody() -> Data? {
+    static private func getHttpBody() -> Data? {
         // first check if the http header - content type is set else no data, return nil
         guard let contentType = requestHttpHeaders.getValue(forKey: "Content-Type") else { return nil }
         
@@ -59,7 +57,7 @@ final class RestManager {
     }
     
     // MARK: Prepare and configure URL Request
-    private func prepareURLRequest(with url: URL? , httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
+    static private func prepareURLRequest(with url: URL? , httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)
         
@@ -82,16 +80,15 @@ final class RestManager {
     
     // MARK: Public methods
     // MARK: Make request to the server
-    public func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: ServerResults) -> Void) {
+    static public func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: ServerResults) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async {
-            [weak self] in
             
-            let targetURL = self?.addURLQueryParameters(toURL: url)
-            let httpBody = self?.getHttpBody()
+            let targetURL = self.addURLQueryParameters(toURL: url)
+            let httpBody = self.getHttpBody()
             
             // Create URLRequest object
-            guard let request = self?.prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
+            guard let request = prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
                 completion(ServerResults(withError: CustomError.failedToCreateRequest))
                 return
             }
@@ -106,7 +103,7 @@ final class RestManager {
     }
     
     // MARK: Get single piece of data from the URL
-    public func getData(fromURL url: URL, completion: @escaping (_ data: Data?) -> Void) {
+    static public func getData(fromURL url: URL, completion: @escaping (_ data: Data?) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)

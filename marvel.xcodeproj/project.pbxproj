@@ -14,6 +14,7 @@
 		7462E6A922F92763002D4C19 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6A822F92763002D4C19 /* Protocols.swift */; };
 		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
 		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
+		7475708C230119CC004701F2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7475708B230119CC004701F2 /* API.swift */; };
 		7488208822CD941E0026999D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208722CD941E0026999D /* AppDelegate.swift */; };
 		7488208A22CD941E0026999D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208922CD941E0026999D /* ViewController.swift */; };
 		7488208F22CD941F0026999D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7488208E22CD941F0026999D /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		748820A622CDA3AD0026999D /* RestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A122CDA3AD0026999D /* RestEntity.swift */; };
 		748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A222CDA3AD0026999D /* ServerResponse.swift */; };
 		748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A322CDA3AD0026999D /* HttpMethod.swift */; };
-		748820A922CDA3AD0026999D /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A422CDA3AD0026999D /* RestManager.swift */; };
 		748820AC22CDAE250026999D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820AB22CDAE250026999D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +34,7 @@
 		7462E6A822F92763002D4C19 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		7475708B230119CC004701F2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7488208422CD941E0026999D /* marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7488208722CD941E0026999D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7488208922CD941E0026999D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		748820A122CDA3AD0026999D /* RestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestEntity.swift; sourceTree = "<group>"; };
 		748820A222CDA3AD0026999D /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		748820A322CDA3AD0026999D /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
-		748820A422CDA3AD0026999D /* RestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		748820AB22CDAE250026999D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7C63C8C614660B5B2386C383 /* Pods_marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 				748820A122CDA3AD0026999D /* RestEntity.swift */,
 				748820A222CDA3AD0026999D /* ServerResponse.swift */,
 				748820A322CDA3AD0026999D /* HttpMethod.swift */,
-				748820A422CDA3AD0026999D /* RestManager.swift */,
+				7475708B230119CC004701F2 /* API.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -318,10 +318,10 @@
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
 				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
 				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
+				7475708C230119CC004701F2 /* API.swift in Sources */,
 				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
 				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,
 				7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */,
-				748820A922CDA3AD0026999D /* RestManager.swift in Sources */,
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
 				748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */,

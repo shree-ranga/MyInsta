@@ -17,6 +17,8 @@ class LoginView: UIView {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.autocorrectionType = .no
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
         return tf
     }()
     
@@ -27,6 +29,7 @@ class LoginView: UIView {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         return tf
     }()
     
