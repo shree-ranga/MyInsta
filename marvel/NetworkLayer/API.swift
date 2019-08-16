@@ -10,18 +10,17 @@ import Foundation
 
 final class API {
     
-    //     MARK: headers, query, and body parameters (all client side)
+    // MARK: - headers, query, and body parameters (all client side)
     static var requestHttpHeaders: RestEntity = RestEntity()
     static var urlQueryParameters: RestEntity = RestEntity()
     static var httpBodyParameters: RestEntity = RestEntity()
     
-    //     MARK: Reuest body data
+    //MARK: - Reuest body data
     static var httpBody: Data?
     
-    //    stvar myInt: Int = 0
     
-    // MARK: Private methods
-    // MARK: Add URL query parameters
+    // MARK: - Private methods
+    // MARK: - Add URL query parameters
     class private func addURLQueryParameters(toURL url: URL) -> URL {
         // Make sure there are query parameters to add
         if urlQueryParameters.totalItems() > 0 {
@@ -39,7 +38,7 @@ final class API {
         return url
     }
     
-    // MARK: Get Http body
+    // MARK: - Get Http body
     // TODO: Deal with media type data
     // TODO: Deal with form type data
     class private func getHttpBody() -> Data? {
@@ -58,7 +57,7 @@ final class API {
         return nil
     }
     
-    // MARK: Prepare and configure URL Request
+    // MARK: - Prepare and configure URL Request
     class private func prepareURLRequest(with url: URL? , httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)
@@ -80,27 +79,28 @@ final class API {
         return request
     }
     
-    // MARK: Public methods
-    // MARK: Make request to the server
+    // MARK: - Public methods
+    // MARK: - Make request to the server
     class public func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: ServerResults) -> Void) {
         
-        
-        let targetURL = self.addURLQueryParameters(toURL: url)
-        let httpBody = self.getHttpBody()
-        
-        // Create URLRequest object
-        guard let request = prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
-            completion(ServerResults(withError: CustomError.failedToCreateRequest))
-            return
-        }
-        print("API Body -", httpBody)
-        print("API request -", request)
         DispatchQueue.global(qos: .userInitiated).async {
+            
+            let targetURL = addURLQueryParameters(toURL: url)
+            let httpBody = getHttpBody()
+            
+            // Create URLRequest object
+            guard let request = prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
+                completion(ServerResults(withError: CustomError.failedToCreateRequest))
+                return
+            }
+            
+            // Network logger
+            NetworkLogger.log(request: request)
             
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-                clear()
+                reset()
                 completion(ServerResults(withData: data, response: ServerResponse(fromURLResponse: response), error: error))
             })
             task.resume()
@@ -113,7 +113,7 @@ final class API {
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-                clear()
+                reset()
                 guard let data = data else {
                     completion(nil)
                     return
@@ -124,11 +124,11 @@ final class API {
         }
     }
     
-    static func clear() {
+    // MARK: - Reset all the static variables
+    static func reset() {
         httpBody = nil
         requestHttpHeaders.clearParams()
         httpBodyParameters.clearParams()
         urlQueryParameters.clearParams()
     }
-    
 }

@@ -49,7 +49,6 @@ class ViewController: UIViewController {
 //        API.myInt = 100
 //        API.httpBody = nil
         API.makeRequest(toURL: myUrl, withHttpMethod: .get) { (res) in
-            print("MAKING REQUEST...")
             guard let data = res.data else { return }
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
             print(json)
@@ -211,8 +210,7 @@ class ViewController: UIViewController {
         guard let logoutUrl = URL(string: LOGOUT_URL) else { return }
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
-        print("LOGOUT BODY PARAMS", API.httpBodyParameters.getAllValues())
-        print("LOGOUT REQUEST PARAMS", API.requestHttpHeaders.getAllValues())
+
         // first delete the token from the server
         API.makeRequest(toURL: logoutUrl, withHttpMethod: .delete) { (res) in
             if let error = res.error {
