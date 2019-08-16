@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error {
             print(error.localizedDescription)
         }
-//        let mainVC = ViewController()
+//        let mainVC = LoginVC()
 //        window?.rootViewController = mainVC
         return true
     }

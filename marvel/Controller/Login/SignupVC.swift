@@ -98,7 +98,7 @@ extension SignupVC: SignupViewDelegate {
             body.append("Content-Disposition: form-data; name=\"full_name\"\r\n\r\n")
             body.append("\(fullName.lowercased())")
             
-            API.httpBody = body
+//            API.httpBody = body
             
             API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
             API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")

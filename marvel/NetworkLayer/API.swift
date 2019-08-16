@@ -9,18 +9,20 @@
 import Foundation
 
 final class API {
-
-    // MARK: headers, query, and body parameters (all client side)
-    static var requestHttpHeaders = RestEntity()
-    static var urlQueryParameters = RestEntity()
-    static var httpBodyParameters = RestEntity()
     
-    // MARK: Reuest body data
+    //     MARK: headers, query, and body parameters (all client side)
+    static var requestHttpHeaders: RestEntity = RestEntity()
+    static var urlQueryParameters: RestEntity = RestEntity()
+    static var httpBodyParameters: RestEntity = RestEntity()
+    
+    //     MARK: Reuest body data
     static var httpBody: Data?
+    
+    //    stvar myInt: Int = 0
     
     // MARK: Private methods
     // MARK: Add URL query parameters
-    static private func addURLQueryParameters(toURL url: URL) -> URL {
+    class private func addURLQueryParameters(toURL url: URL) -> URL {
         // Make sure there are query parameters to add
         if urlQueryParameters.totalItems() > 0 {
             guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return url }
@@ -40,7 +42,7 @@ final class API {
     // MARK: Get Http body
     // TODO: Deal with media type data
     // TODO: Deal with form type data
-    static private func getHttpBody() -> Data? {
+    class private func getHttpBody() -> Data? {
         // first check if the http header - content type is set else no data, return nil
         guard let contentType = requestHttpHeaders.getValue(forKey: "Content-Type") else { return nil }
         
@@ -53,11 +55,11 @@ final class API {
             }
         }
         
-        return httpBody
+        return nil
     }
     
     // MARK: Prepare and configure URL Request
-    static private func prepareURLRequest(with url: URL? , httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
+    class private func prepareURLRequest(with url: URL? , httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)
         
@@ -80,22 +82,25 @@ final class API {
     
     // MARK: Public methods
     // MARK: Make request to the server
-    static public func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: ServerResults) -> Void) {
+    class public func makeRequest(toURL url: URL, withHttpMethod httpMethod: HttpMethod, completion: @escaping (_ result: ServerResults) -> Void) {
         
+        
+        let targetURL = self.addURLQueryParameters(toURL: url)
+        let httpBody = self.getHttpBody()
+        
+        // Create URLRequest object
+        guard let request = prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
+            completion(ServerResults(withError: CustomError.failedToCreateRequest))
+            return
+        }
+        print("API Body -", httpBody)
+        print("API request -", request)
         DispatchQueue.global(qos: .userInitiated).async {
-            
-            let targetURL = self.addURLQueryParameters(toURL: url)
-            let httpBody = self.getHttpBody()
-            
-            // Create URLRequest object
-            guard let request = prepareURLRequest(with: targetURL, httpBody: httpBody, httpMethod: httpMethod) else {
-                completion(ServerResults(withError: CustomError.failedToCreateRequest))
-                return
-            }
             
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+                clear()
                 completion(ServerResults(withData: data, response: ServerResponse(fromURLResponse: response), error: error))
             })
             task.resume()
@@ -103,11 +108,12 @@ final class API {
     }
     
     // MARK: Get single piece of data from the URL
-    static public func getData(fromURL url: URL, completion: @escaping (_ data: Data?) -> Void) {
+    class public func getData(fromURL url: URL, completion: @escaping (_ data: Data?) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
+                clear()
                 guard let data = data else {
                     completion(nil)
                     return
@@ -116,6 +122,13 @@ final class API {
             })
             task.resume()
         }
+    }
+    
+    static func clear() {
+        httpBody = nil
+        requestHttpHeaders.clearParams()
+        httpBodyParameters.clearParams()
+        urlQueryParameters.clearParams()
     }
     
 }

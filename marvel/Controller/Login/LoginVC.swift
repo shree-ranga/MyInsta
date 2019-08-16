@@ -37,22 +37,23 @@ extension LoginVC: LoginViewDelegate {
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         API.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
         API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
-        
+        print(API.requestHttpHeaders.getAllValues())
+        print(API.httpBodyParameters.getAllValues())
         API.makeRequest(toURL: loginUrl, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
             }
-            
+
             if let statusCode = res.response {
                 print(statusCode.httpStatusCode)
             }
-            
+
             guard let data = res.data else { return }
-            
+
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
                 let dict = jsonResponse as! Dictionary<String, AnyObject>
-                
+
                 if let token = dict["token"] {
                     let auth_token = token as! String
                     do {

@@ -11,6 +11,7 @@
 		7443FCF222F8079D00757A33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF122F8079D00757A33 /* LoginView.swift */; };
 		7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF522F80A7A00757A33 /* LoginVC.swift */; };
 		7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456052822FE6033000C59F3 /* MultiPartFormBody.swift */; };
+		745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BE423065BB400ADC6E7 /* NetworkLogger.swift */; };
 		7462E6A922F92763002D4C19 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6A822F92763002D4C19 /* Protocols.swift */; };
 		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
 		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
@@ -31,6 +32,7 @@
 		7443FCF122F8079D00757A33 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7443FCF522F80A7A00757A33 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7456052822FE6033000C59F3 /* MultiPartFormBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormBody.swift; sourceTree = "<group>"; };
+		745A4BE423065BB400ADC6E7 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		7462E6A822F92763002D4C19 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				748820A222CDA3AD0026999D /* ServerResponse.swift */,
 				748820A322CDA3AD0026999D /* HttpMethod.swift */,
 				7475708B230119CC004701F2 /* API.swift */,
+				745A4BE423065BB400ADC6E7 /* NetworkLogger.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */,
 				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
 				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,

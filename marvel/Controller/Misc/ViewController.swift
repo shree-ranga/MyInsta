@@ -39,12 +39,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         //        uploadImage()
-        API.getData(fromURL: URL(string: (BASE_URL + "media/photo3373271114.jpg"))!, completion: { (data) in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: data)
-            }
-        })
+//        API.getData(fromURL: URL(string: (BASE_URL + "media/photo3373271114.jpg"))!, completion: { (data) in
+//            guard let data = data else { return }
+//            DispatchQueue.main.async {
+//                self.profileImageView.image = UIImage(data: data)
+//            }
+//        })
+        let myUrl = URL(string: BASE_URL + "accounts/dummy/")!
+//        API.myInt = 100
+//        API.httpBody = nil
+        API.makeRequest(toURL: myUrl, withHttpMethod: .get) { (res) in
+            print("MAKING REQUEST...")
+            guard let data = res.data else { return }
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
+        }
     }
     
     func setupViews() {
@@ -105,7 +114,7 @@ class ViewController: UIViewController {
         API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
         API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
         API.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
-        API.httpBody = body
+//        API.httpBody = body
         API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
@@ -198,10 +207,12 @@ class ViewController: UIViewController {
     @objc func handleUpload() {
         let token = try? keyChain.get("auth_token")
         
+//        API.httpBody = nil
         guard let logoutUrl = URL(string: LOGOUT_URL) else { return }
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
-        
+        print("LOGOUT BODY PARAMS", API.httpBodyParameters.getAllValues())
+        print("LOGOUT REQUEST PARAMS", API.requestHttpHeaders.getAllValues())
         // first delete the token from the server
         API.makeRequest(toURL: logoutUrl, withHttpMethod: .delete) { (res) in
             if let error = res.error {
@@ -218,6 +229,7 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 let loginVC = LoginVC()
                 self.present(loginVC, animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }
             print("Logout Successful...")
         }
