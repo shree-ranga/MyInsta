@@ -12,6 +12,12 @@
 		7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF522F80A7A00757A33 /* LoginVC.swift */; };
 		7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456052822FE6033000C59F3 /* MultiPartFormBody.swift */; };
 		745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BE423065BB400ADC6E7 /* NetworkLogger.swift */; };
+		745A4BE823066E0000ADC6E7 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BE723066E0000ADC6E7 /* MainTabBarVC.swift */; };
+		745A4BEF2306710700ADC6E7 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BEE2306710700ADC6E7 /* FeedVC.swift */; };
+		745A4BF12306711000ADC6E7 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF02306711000ADC6E7 /* SearchVC.swift */; };
+		745A4BF32306711D00ADC6E7 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF22306711D00ADC6E7 /* AddPostVC.swift */; };
+		745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF42306712C00ADC6E7 /* NotificationsVC.swift */; };
+		745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF62306713500ADC6E7 /* ProfileVC.swift */; };
 		7462E6A922F92763002D4C19 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6A822F92763002D4C19 /* Protocols.swift */; };
 		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
 		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
@@ -33,6 +39,12 @@
 		7443FCF522F80A7A00757A33 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7456052822FE6033000C59F3 /* MultiPartFormBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormBody.swift; sourceTree = "<group>"; };
 		745A4BE423065BB400ADC6E7 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		745A4BE723066E0000ADC6E7 /* MainTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
+		745A4BEE2306710700ADC6E7 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		745A4BF02306711000ADC6E7 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		745A4BF22306711D00ADC6E7 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
+		745A4BF42306712C00ADC6E7 /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
+		745A4BF62306713500ADC6E7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		7462E6A822F92763002D4C19 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
@@ -72,13 +84,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7443FCF322F808D600757A33 /* Login */ = {
+		7443FCF322F808D600757A33 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
 				7443FCF122F8079D00757A33 /* LoginView.swift */,
 				7462E6AA22F93901002D4C19 /* SignupView.swift */,
 			);
-			path = Login;
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		7443FCF422F80A6D00757A33 /* Login */ = {
@@ -96,6 +108,54 @@
 				7488208922CD941E0026999D /* ViewController.swift */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		745A4BE623066DE300ADC6E7 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BE723066E0000ADC6E7 /* MainTabBarVC.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		745A4BE923066E5D00ADC6E7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BF62306713500ADC6E7 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		745A4BEA23066E9300ADC6E7 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BF42306712C00ADC6E7 /* NotificationsVC.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		745A4BEB23066E9D00ADC6E7 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BF22306711D00ADC6E7 /* AddPostVC.swift */,
+			);
+			path = AddPost;
+			sourceTree = "<group>";
+		};
+		745A4BEC23066EAC00ADC6E7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BF02306711000ADC6E7 /* SearchVC.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		745A4BED23066EB500ADC6E7 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				745A4BEE2306710700ADC6E7 /* FeedVC.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		7488207B22CD941E0026999D = {
@@ -144,6 +204,12 @@
 			isa = PBXGroup;
 			children = (
 				7443FCF422F80A6D00757A33 /* Login */,
+				745A4BE623066DE300ADC6E7 /* TabBar */,
+				745A4BED23066EB500ADC6E7 /* Feed */,
+				745A4BEC23066EAC00ADC6E7 /* Search */,
+				745A4BEB23066E9D00ADC6E7 /* AddPost */,
+				745A4BEA23066E9300ADC6E7 /* Notifications */,
+				745A4BE923066E5D00ADC6E7 /* Profile */,
 				7443FCF722F80A8D00757A33 /* Misc */,
 			);
 			path = Controller;
@@ -152,7 +218,7 @@
 		7488209B22CD95470026999D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7443FCF322F808D600757A33 /* Login */,
+				7443FCF322F808D600757A33 /* LoginView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,15 +382,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */,
+				745A4BF32306711D00ADC6E7 /* AddPostVC.swift in Sources */,
 				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
 				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
+				745A4BEF2306710700ADC6E7 /* FeedVC.swift in Sources */,
+				745A4BE823066E0000ADC6E7 /* MainTabBarVC.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
 				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
+				745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */,
 				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
 				7475708C230119CC004701F2 /* API.swift in Sources */,
+				745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */,
 				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
 				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,
+				745A4BF12306711000ADC6E7 /* SearchVC.swift in Sources */,
 				7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */,
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,

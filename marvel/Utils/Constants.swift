@@ -12,7 +12,7 @@ import Foundation
 
 //let BASE_URL = "http://192.168.0.18:8000/"
 
-let BASE_URL = "http://localhost:8000/"
+let BASE_URL = "http://127.0.0.1:8000/"
 
 let ACCOUNT_AUTH_URL = BASE_URL + "accounts/auth/"
 

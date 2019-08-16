@@ -27,7 +27,7 @@ class NetworkLogger {
         HOST: \(host)\n
         """
         for (key,value) in request.allHTTPHeaderFields ?? [:] {
-            logOutput += "HEADERS: \(key): \(value) \n"
+            logOutput += "\n HEADERS: \(key): \(value) \n"
         }
         if let body = request.httpBody {
             logOutput += "BODY: \n \(NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? "")"

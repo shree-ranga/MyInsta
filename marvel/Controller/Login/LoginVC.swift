@@ -12,7 +12,7 @@ import KeychainAccess
 class LoginVC: UIViewController {
     
     var loginView: LoginView!
-    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
+    private let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,11 @@ extension LoginVC: LoginViewDelegate {
         guard let password = loginView.passwordTextField.text else { return }
         
         guard let loginUrl = URL(string: LOGIN_URL) else { return }
+        
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         API.httpBodyParameters.setValue(value: email.lowercased(), forKey: "email")
         API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
-        print(API.requestHttpHeaders.getAllValues())
-        print(API.httpBodyParameters.getAllValues())
+        
         API.makeRequest(toURL: loginUrl, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
@@ -79,6 +79,4 @@ extension LoginVC: LoginViewDelegate {
         let signupVC = SignupVC()
         present(signupVC, animated: true, completion: nil)
     }
-    
-    
 }

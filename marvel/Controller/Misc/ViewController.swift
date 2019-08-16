@@ -33,21 +33,13 @@ class ViewController: UIViewController {
         return button
     }()
     
-    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
+    private let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        //        uploadImage()
-//        API.getData(fromURL: URL(string: (BASE_URL + "media/photo3373271114.jpg"))!, completion: { (data) in
-//            guard let data = data else { return }
-//            DispatchQueue.main.async {
-//                self.profileImageView.image = UIImage(data: data)
-//            }
-//        })
+
         let myUrl = URL(string: BASE_URL + "accounts/dummy/")!
-//        API.myInt = 100
-//        API.httpBody = nil
         API.makeRequest(toURL: myUrl, withHttpMethod: .get) { (res) in
             guard let data = res.data else { return }
             let json = try! JSONSerialization.jsonObject(with: data, options: [])

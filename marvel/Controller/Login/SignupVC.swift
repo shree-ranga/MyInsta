@@ -15,7 +15,7 @@ class SignupVC: UIViewController {
     
     let imagePicker = UIImagePickerController()
 
-    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
+    private let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     var isImageSelected: Bool = false
     
