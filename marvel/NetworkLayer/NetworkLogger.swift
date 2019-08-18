@@ -10,8 +10,8 @@ import Foundation
 
 class NetworkLogger {
     static func log(request: URLRequest) {
-        print("\n ------------------------- OUTGOING REQUEST ----------------------- \n")
-        defer { print("------------------------ END --------------------------------") }
+        print("------------------------------------ OUTGOING REQUEST ------------------------------------------ \n")
+        defer { print("----------------------------------------- END -------------------------------------------------") }
         
         let urlString = request.url?.absoluteString ?? ""
         let urlComponents = URLComponents(string: urlString)
@@ -24,10 +24,10 @@ class NetworkLogger {
         var logOutput = """
         URL: \(urlString) \n
         ENDPOINT: \(method) \(path)?\(query) HTTP/1.1 \n
-        HOST: \(host)\n
+        HOST: \(host)\n \n
         """
         for (key,value) in request.allHTTPHeaderFields ?? [:] {
-            logOutput += "\n HEADERS: \(key): \(value) \n"
+            logOutput += "HEADERS: \(key): \(value) \n \n"
         }
         if let body = request.httpBody {
             logOutput += "BODY: \n \(NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? "")"

@@ -63,7 +63,7 @@ extension LoginVC: LoginViewDelegate {
                         print(error.localizedDescription)
                     }
                     DispatchQueue.main.async {
-                        let mainVC = ViewController()
+                        let mainVC = MainTabBarVC()
                         self.present(mainVC, animated: true, completion: nil)
                     }
                 } else {

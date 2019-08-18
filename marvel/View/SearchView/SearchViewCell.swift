@@ -18,7 +18,7 @@ class SearchViewCell: UICollectionViewCell {
             guard let fullName = user?.fullName else { return }
             guard let profileImageUrl = user?.profileImageUrl else { return }
 //            print(profileImageUrl)
-            profileImageView.loadImage(with: BASE_URL + profileImageUrl)
+            profileImageView.loadImage(with: profileImageUrl)
             userNameLabel.text = userName
             fullNameLabel.text = fullName
         }

@@ -163,8 +163,6 @@ extension SignupVC: SignupViewDelegate {
                 })
             }
         }
-        
-        
     }
     
     func generateBoundaryAndFileName() -> (String, String) {

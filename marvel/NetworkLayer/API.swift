@@ -49,6 +49,8 @@ final class API {
             do {
                 // before swift 4
                 let jsonData = try JSONSerialization.data(withJSONObject: httpBodyParameters.getAllValues(), options: [.prettyPrinted])
+//                let encoder = JSONEncoder()
+//                let jsonData = try encoder.encode(httpBodyParameters.getAllValues())
                 return jsonData
             } catch {
                 print(error.localizedDescription)

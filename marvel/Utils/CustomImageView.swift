@@ -9,11 +9,14 @@
 import UIKit
 
 var imageCache = [String: UIImage]()
+
 class CustomImageView: UIImageView {
     
     var lastImageURLUsedToLoadImage: String?
     
     func loadImage(with urlString: String) {
+        
+        let urlString = BASE_URL + urlString
         
         // set image property to nil
         image = nil
