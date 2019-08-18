@@ -31,13 +31,13 @@ class CustomImageView: UIImageView {
         guard let imageUrl = URL(string: urlString) else { return }
         
         // create data task
-        URLSession.shared.dataTask(with: imageUrl) { (data, response, error) in
+        API.getData(fromURL: imageUrl) { (data) in
             
-            // handle error
-            if let error = error {
-                print("Failed to load image", error.localizedDescription)
-            }
-            
+            //            // handle error
+            //            if let error = error {
+            //                print("Failed to load image", error.localizedDescription)
+            //            }
+            //
             if self.lastImageURLUsedToLoadImage != imageUrl.absoluteString {
                 return
             }
@@ -55,8 +55,7 @@ class CustomImageView: UIImageView {
             DispatchQueue.main.async {
                 self.image = photoImage
             }
-            
-            }.resume()
+        }
     }
 }
 

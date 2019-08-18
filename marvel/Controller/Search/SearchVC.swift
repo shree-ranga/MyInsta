@@ -18,6 +18,8 @@ class SearchVC: UIViewController {
         setupViews()
         
         configureCollectionView()
+        
+        fetchAllUsers()
     }
     
     func setupViews() {
@@ -29,6 +31,25 @@ class SearchVC: UIViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchViewCell.self, forCellWithReuseIdentifier: SearchViewCell.cellId)
+    }
+    
+    // MARK: - API calls
+    func fetchAllUsers() {
+        guard let url = URL(string: ACCOUNTS_URL + "users/") else { return }
+        API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            }
+        }
     }
     
 }
