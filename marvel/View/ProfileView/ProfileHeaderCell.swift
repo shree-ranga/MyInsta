@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileHeaderCell: UICollectionViewCell {
     
-    static let cellId = "ProfileHeaderCellId"
+    static let cellId = "profileHeaderCellId"
     
     // MARK: - profile image view
     let profileImageViewWidthHeight: CGFloat = 80
@@ -47,6 +47,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     }()
     
     // MARK: - bio text view
+    // TODO: - enable links and hashtags
     lazy var bioTextView: UITextView = {
         let tv = UITextView()
         tv.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis disap"
@@ -63,7 +64,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     // MARK: - followers label
     lazy var followersLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "9,999", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
+        let attributedText = NSMutableAttributedString(string: "0", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
         attributedText.append(NSAttributedString(string: " Followers", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +74,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     // MARK: - following label
     lazy var followingLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "9,999", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
+        let attributedText = NSMutableAttributedString(string: "0", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
         attributedText.append(NSAttributedString(string: " Following", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
