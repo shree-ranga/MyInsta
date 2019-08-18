@@ -11,6 +11,7 @@ import UIKit
 class SearchVC: UIViewController {
     
     var searchView: SearchView!
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class SearchVC: UIViewController {
         configureCollectionView()
         
         fetchAllUsers()
+        
     }
     
     func setupViews() {
@@ -46,12 +48,21 @@ class SearchVC: UIViewController {
             }
             
             if let data = res.data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
+                // before swift 4
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//                let jsonArray = json as! [[String: Any]]
+//                print(jsonArray)
+                let decoder = JSONDecoder()
+                let userList = try! decoder.decode([User].self, from: data)
+                self.users = userList
+            }
+            
+            // reload collection view
+            DispatchQueue.main.async {
+                self.searchView.collectionView.reloadData()
             }
         }
     }
-    
 }
 
 extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -61,11 +72,12 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchViewCell.cellId, for: indexPath) as! SearchViewCell
+        cell.user = users[indexPath.item]
         return cell
     }
     

@@ -12,6 +12,18 @@ class SearchViewCell: UICollectionViewCell {
     
     static let cellId = "searchViewCellId"
     
+    var user: User? {
+        didSet {
+            guard let userName = user?.userName else { return }
+            guard let fullName = user?.fullName else { return }
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+//            print(profileImageUrl)
+            profileImageView.loadImage(with: BASE_URL + profileImageUrl)
+            userNameLabel.text = userName
+            fullNameLabel.text = fullName
+        }
+    }
+    
     let profileImageViewHeight: CGFloat = 48
     lazy var profileImageView: CustomImageView = {
         let iv = CustomImageView()

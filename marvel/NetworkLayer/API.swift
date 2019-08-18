@@ -47,8 +47,9 @@ final class API {
         
         if (contentType as! String).contains("application/json") {
             do {
-                let json = try JSONSerialization.data(withJSONObject: httpBodyParameters.getAllValues(), options: [.prettyPrinted])
-                return json
+                // before swift 4
+                let jsonData = try JSONSerialization.data(withJSONObject: httpBodyParameters.getAllValues(), options: [.prettyPrinted])
+                return jsonData
             } catch {
                 print(error.localizedDescription)
             }
