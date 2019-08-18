@@ -22,6 +22,9 @@
 		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
 		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
 		7475708C230119CC004701F2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7475708B230119CC004701F2 /* API.swift */; };
+		7479951A23076B6C009A636F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479951923076B6C009A636F /* ProfileView.swift */; };
+		7479951C23076B77009A636F /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479951B23076B77009A636F /* ProfileHeaderCell.swift */; };
+		7479951E2308F4C8009A636F /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7479951D2308F4C8009A636F /* CustomImageView.swift */; };
 		7488208822CD941E0026999D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208722CD941E0026999D /* AppDelegate.swift */; };
 		7488208A22CD941E0026999D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488208922CD941E0026999D /* ViewController.swift */; };
 		7488208F22CD941F0026999D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7488208E22CD941F0026999D /* Assets.xcassets */; };
@@ -49,6 +52,9 @@
 		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		7475708B230119CC004701F2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7479951923076B6C009A636F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7479951B23076B77009A636F /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		7479951D2308F4C8009A636F /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		7488208422CD941E0026999D /* marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7488208722CD941E0026999D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7488208922CD941E0026999D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +164,15 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		7479951823076B4D009A636F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7479951923076B6C009A636F /* ProfileView.swift */,
+				7479951B23076B77009A636F /* ProfileHeaderCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		7488207B22CD941E0026999D = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +233,7 @@
 		7488209B22CD95470026999D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7479951823076B4D009A636F /* Profile */,
 				7443FCF322F808D600757A33 /* LoginView */,
 			);
 			path = View;
@@ -249,6 +265,7 @@
 				748820AB22CDAE250026999D /* Constants.swift */,
 				7462E6A822F92763002D4C19 /* Protocols.swift */,
 				7456052822FE6033000C59F3 /* MultiPartFormBody.swift */,
+				7479951D2308F4C8009A636F /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -382,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */,
+				7479951E2308F4C8009A636F /* CustomImageView.swift in Sources */,
 				745A4BF32306711D00ADC6E7 /* AddPostVC.swift in Sources */,
 				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
 				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
@@ -391,6 +409,7 @@
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
 				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
 				745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */,
+				7479951C23076B77009A636F /* ProfileHeaderCell.swift in Sources */,
 				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
 				7475708C230119CC004701F2 /* API.swift in Sources */,
 				745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */,
@@ -401,6 +420,7 @@
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
 				748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */,
+				7479951A23076B6C009A636F /* ProfileView.swift in Sources */,
 				748820AC22CDAE250026999D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

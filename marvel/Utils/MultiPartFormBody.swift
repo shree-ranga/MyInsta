@@ -36,7 +36,6 @@ class MultiPartFormBody {
         body.append("--\(boundary)--\(lineBreak)")
         return body
     }
-    
 }
 
 extension Data {
