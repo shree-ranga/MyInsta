@@ -57,7 +57,7 @@ final class API {
             }
         }
         
-        return nil
+        return httpBody
     }
     
     // MARK: - Prepare and configure URL Request

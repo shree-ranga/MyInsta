@@ -18,7 +18,7 @@ class SignupView: UIView {
         return button
     }()
     
-    lazy var nameField: UITextField = {
+    lazy var fullNameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Full Name"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
@@ -35,6 +35,7 @@ class SignupView: UIView {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         return tf
     }()
     
@@ -44,6 +45,8 @@ class SignupView: UIView {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         return tf
     }()
@@ -54,6 +57,7 @@ class SignupView: UIView {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         return tf
     }()
@@ -104,7 +108,7 @@ class SignupView: UIView {
     }
     
     func configureViewComponents() {
-        let loginStackView = UIStackView(arrangedSubviews: [ nameField, userNameTextField, emailTextField, passwordTextField, signupButton])
+        let loginStackView = UIStackView(arrangedSubviews: [ fullNameTextField, userNameTextField, emailTextField, passwordTextField, signupButton])
         loginStackView.axis = .vertical
         loginStackView.spacing = 10
         loginStackView.distribution = .fillEqually
