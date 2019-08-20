@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class ProfileVC: UIViewController {
+    private let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     var profileView: ProfileView!
+    
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +22,16 @@ class ProfileVC: UIViewController {
         setupViews()
         
         configureCollectionView()
+        
+        if currentUser == nil {
+            fetchCurrentUserData()
+        }
+        
+        if let currentUser = currentUser {
+            navigationItem.title = currentUser.userName
+        }
+        
+//        print("Current User is \(currentUser)")
     }
     
     func setupViews() {
@@ -29,6 +43,39 @@ class ProfileVC: UIViewController {
         profileView.collectionView.delegate = self
         profileView.collectionView.dataSource = self
         profileView.collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: ProfileHeaderCell.cellId)
+    }
+    
+    // MARK: - API Calls
+    
+    func fetchCurrentUserData() {
+        let token = try? keyChain.get("auth_token")
+
+        guard let url = URL(string: ACCOUNTS_URL + "users/me/") else { return }
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//                print(json!)
+                let decoder = JSONDecoder()
+                let user = try? decoder.decode(User.self, from: data)
+                self.currentUser = user
+            }
+            
+            DispatchQueue.main.async {
+                self.navigationItem.title = self.currentUser?.userName
+                self.profileView.collectionView.reloadData()
+            }
+        }
     }
     
 }
@@ -45,6 +92,7 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileHeaderCell.cellId, for: indexPath) as! ProfileHeaderCell
+        cell.user = currentUser
         return cell
     }
     

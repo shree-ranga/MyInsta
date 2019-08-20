@@ -85,4 +85,16 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return CGSize(width: view.frame.width, height: 60)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print(users[indexPath.item].userName)
+        let user = users[indexPath.item]
+        
+        // profile instance
+        let profileVC = ProfileVC()
+        profileVC.currentUser = user
+        
+        // push profile vc
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
 }

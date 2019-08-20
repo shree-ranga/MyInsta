@@ -12,6 +12,17 @@ class ProfileHeaderCell: UICollectionViewCell {
     
     static let cellId = "profileHeaderCellId"
     
+    var user: User? {
+        didSet {
+//            guard let userName = user?.userName else { return }
+            guard let fullName = user?.fullName else { return }
+            guard let imageUrl = user?.profileImageUrl else { return }
+            
+            fullNameLabel.text = fullName
+            profileImageView.loadImage(with: imageUrl)
+        }
+    }
+    
     // MARK: - profile image view
     let profileImageViewWidthHeight: CGFloat = 80
     lazy var profileImageView: CustomImageView = {
