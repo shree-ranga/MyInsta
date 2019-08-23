@@ -74,39 +74,38 @@ extension SignupVC: SignupViewDelegate {
         guard let fullName = signupView.fullNameTextField.text else { return }
         guard let password = signupView.passwordTextField.text else { return }
         
-        if isImageSelected {
-            if let profileImage = signupView.profileImageButton.imageView?.image {
-                let uploadData = profileImage.jpegData(compressionQuality: 0.7)!
-                
-                let (boundary, fileName) = generateBoundaryAndFileName()
-                
-                var body: Data
-                
-                body = MultiPartFormBody(uploadData: uploadData, serverField: "profile_image_url", boundary: boundary, fileName: fileName).getBody()
-                
-                body.append("\r\n--\(boundary)\r\n")
-                body.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n")
-                body.append("\(userName.lowercased())")
-                
-                body.append("\r\n--\(boundary)\r\n")
-                body.append("Content-Disposition: form-data; name=\"password\"\r\n\r\n")
-                body.append("\(password.lowercased())")
-                
-                body.append("\r\n--\(boundary)\r\n")
-                body.append("Content-Disposition: form-data; name=\"email\"\r\n\r\n")
-                body.append("\(email.lowercased())")
-                
-                body.append("\r\n--\(boundary)\r\n")
-                body.append("Content-Disposition: form-data; name=\"full_name\"\r\n\r\n")
-                body.append("\(fullName)")
-                
-                API.httpBody = body
-                
-                API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
-                API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
-                API.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
-            }
-        } else {
+        if let profileImage = signupView.profileImageButton.imageView?.image {
+            let uploadData = profileImage.jpegData(compressionQuality: 0.7)!
+            
+            let (boundary, fileName) = generateBoundaryAndFileName()
+            
+            var body: Data
+            
+            body = MultiPartFormBody(uploadData: uploadData, serverField: "profile_image_url", boundary: boundary, fileName: fileName).getBody()
+            
+            body.append("\r\n--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n")
+            body.append("\(userName.lowercased())")
+            
+            body.append("\r\n--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"password\"\r\n\r\n")
+            body.append("\(password.lowercased())")
+            
+            body.append("\r\n--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"email\"\r\n\r\n")
+            body.append("\(email.lowercased())")
+            
+            body.append("\r\n--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"full_name\"\r\n\r\n")
+            body.append("\(fullName)")
+            
+            API.httpBody = body
+            
+            API.requestHttpHeaders.setValue(value: "multipart/form-data; boundary=\(boundary)", forKey: "Content-Type")
+            API.requestHttpHeaders.setValue(value: "attachement; filename=\(fileName)", forKey: "Content-Disposition")
+            API.requestHttpHeaders.setValue(value: "\(body.count)", forKey: "Content-Length")
+        }
+        else {
             API.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
             API.httpBodyParameters.setValue(value: fullName, forKey: "full_name")
             API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
@@ -157,7 +156,7 @@ extension SignupVC: SignupViewDelegate {
                         print("Registration Successful...")
                         
                         DispatchQueue.main.async {
-//                            let mainVC = ViewController()
+                            //                            let mainVC = ViewController()
                             let mainVC = MainTabBarVC()
                             self.present(mainVC, animated: true, completion: nil)
                         }

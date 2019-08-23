@@ -10,7 +10,7 @@ import Foundation
 
 //let API = RestManager.shared
 
-//let BASE_URL = "http://192.168.0.18:8000/"
+//let BASE_URL = "http://192.168.0.12:8000"
 
 let BASE_URL = "http://127.0.0.1:8000"
 

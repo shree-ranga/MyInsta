@@ -18,6 +18,9 @@
 		745A4BF32306711D00ADC6E7 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF22306711D00ADC6E7 /* AddPostVC.swift */; };
 		745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF42306712C00ADC6E7 /* NotificationsVC.swift */; };
 		745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A4BF62306713500ADC6E7 /* ProfileVC.swift */; };
+		745F4969230F5E2400D3F483 /* FollowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745F4968230F5E2400D3F483 /* FollowView.swift */; };
+		745F496B230F5E2E00D3F483 /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745F496A230F5E2E00D3F483 /* FollowCell.swift */; };
+		745F496D230F5E3A00D3F483 /* FollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745F496C230F5E3A00D3F483 /* FollowVC.swift */; };
 		7462E6A922F92763002D4C19 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6A822F92763002D4C19 /* Protocols.swift */; };
 		7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AA22F93901002D4C19 /* SignupView.swift */; };
 		7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462E6AC22F9390E002D4C19 /* SignupVC.swift */; };
@@ -51,6 +54,9 @@
 		745A4BF22306711D00ADC6E7 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		745A4BF42306712C00ADC6E7 /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		745A4BF62306713500ADC6E7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		745F4968230F5E2400D3F483 /* FollowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowView.swift; sourceTree = "<group>"; };
+		745F496A230F5E2E00D3F483 /* FollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
+		745F496C230F5E3A00D3F483 /* FollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowVC.swift; sourceTree = "<group>"; };
 		7462E6A822F92763002D4C19 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7462E6AA22F93901002D4C19 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7462E6AC22F9390E002D4C19 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				745A4BF62306713500ADC6E7 /* ProfileVC.swift */,
+				745F496C230F5E3A00D3F483 /* FollowVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -175,6 +182,8 @@
 			children = (
 				7479951923076B6C009A636F /* ProfileView.swift */,
 				7479951B23076B77009A636F /* ProfileHeaderCell.swift */,
+				745F4968230F5E2400D3F483 /* FollowView.swift */,
+				745F496A230F5E2E00D3F483 /* FollowCell.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 				7479952523090C86009A636F /* User.swift in Sources */,
 				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
 				745A4BEF2306710700ADC6E7 /* FeedVC.swift in Sources */,
+				745F496B230F5E2E00D3F483 /* FollowCell.swift in Sources */,
 				745A4BE823066E0000ADC6E7 /* MainTabBarVC.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
@@ -431,7 +441,9 @@
 				7479951C23076B77009A636F /* ProfileHeaderCell.swift in Sources */,
 				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
 				7475708C230119CC004701F2 /* API.swift in Sources */,
+				745F496D230F5E3A00D3F483 /* FollowVC.swift in Sources */,
 				745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */,
+				745F4969230F5E2400D3F483 /* FollowView.swift in Sources */,
 				7479952123090479009A636F /* SearchView.swift in Sources */,
 				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
 				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,

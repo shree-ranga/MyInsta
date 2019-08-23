@@ -12,7 +12,7 @@ class SignupView: UIView {
     
     lazy var profileImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "default")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button

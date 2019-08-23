@@ -53,8 +53,9 @@ class SearchVC: UIViewController {
 //                let jsonArray = json as! [[String: Any]]
 //                print(jsonArray)
                 let decoder = JSONDecoder()
-                let userList = try! decoder.decode([User].self, from: data)
-                self.users = userList
+                let userList = try? decoder.decode([User].self, from: data)
+                guard let users = userList else { return }
+                self.users = users
             }
             
             // reload collection view

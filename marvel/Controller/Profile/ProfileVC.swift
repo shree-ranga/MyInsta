@@ -30,8 +30,6 @@ class ProfileVC: UIViewController {
         if let currentUser = currentUser {
             navigationItem.title = currentUser.userName
         }
-        
-//        print("Current User is \(currentUser)")
     }
     
     func setupViews() {
@@ -92,6 +90,7 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileHeaderCell.cellId, for: indexPath) as! ProfileHeaderCell
+        cell.delegate = self
         cell.user = currentUser
         return cell
     }
@@ -100,4 +99,24 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         return CGSize(width: view.frame.width, height: 250)
     }
     
+}
+
+extension ProfileVC: ProfileCellDelegate {
+    func handleFollowTapped(for cell: ProfileHeaderCell) {
+        print("Follow button tapped")
+    }
+    
+    func handleFollowersTapped(for cell: ProfileHeaderCell) {
+        let followVC = FollowVC()
+        followVC.isFollowers = true
+        followVC.user = currentUser
+        navigationController?.pushViewController(followVC, animated: true)
+    }
+    
+    func handleFollowingTapped(for cell: ProfileHeaderCell) {
+        let followVC = FollowVC()
+        followVC.isFollowing = true
+        followVC.user = currentUser
+        navigationController?.pushViewController(followVC, animated: true)
+    }
 }

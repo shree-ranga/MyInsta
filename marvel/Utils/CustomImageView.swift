@@ -8,9 +8,9 @@
 
 import UIKit
 
-var imageCache = [String: UIImage]()
-
 class CustomImageView: UIImageView {
+    
+    var imageCache = [String: UIImage]()
     
     var lastImageURLUsedToLoadImage: String?
     
@@ -22,7 +22,9 @@ class CustomImageView: UIImageView {
         image = nil
         
         // set lastImageURLUsedToLoadImage
-        lastImageURLUsedToLoadImage = urlString
+//        if lastImageURLUsedToLoadImage == nil {
+            lastImageURLUsedToLoadImage = urlString
+//        }
         
         // check if image exists in cache
         if let cachedImage = imageCache[urlString] {
@@ -52,7 +54,7 @@ class CustomImageView: UIImageView {
             let photoImage = UIImage(data: imageData)
             
             // set key and value for image cache
-            imageCache[imageUrl.absoluteString] = photoImage
+            self.imageCache[imageUrl.absoluteString] = photoImage
             
             // set image
             DispatchQueue.main.async {
