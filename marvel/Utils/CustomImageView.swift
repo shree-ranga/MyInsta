@@ -8,59 +8,37 @@
 
 import UIKit
 
+
 class CustomImageView: UIImageView {
     
     var imageCache = [String: UIImage]()
     
-    var lastImageURLUsedToLoadImage: String?
+    private var lastURLUsedToLoadImage: String?
     
     func loadImage(with urlString: String) {
         
         let urlString = BASE_URL + urlString
         
-        // set image property to nil
+        lastURLUsedToLoadImage = urlString
         image = nil
         
-        // set lastImageURLUsedToLoadImage
-//        if lastImageURLUsedToLoadImage == nil {
-            lastImageURLUsedToLoadImage = urlString
-//        }
-        
-        // check if image exists in cache
         if let cachedImage = imageCache[urlString] {
-            self.image = cachedImage
+            image = cachedImage
             return
         }
         
-        // create image url
-        guard let imageUrl = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else { return }
         
-        // create data task
-        API.getData(fromURL: imageUrl) { (data) in
+        API.getData(fromURL: url, completion: { (data) in
+            if url.absoluteString != self.lastURLUsedToLoadImage { return }
             
-            //            // handle error
-            //            if let error = error {
-            //                print("Failed to load image", error.localizedDescription)
-            //            }
-            //
-            if self.lastImageURLUsedToLoadImage != imageUrl.absoluteString {
-                return
-            }
-            
-            // image data
             guard let imageData = data else { return }
-            
-            // create image from the image data
             let photoImage = UIImage(data: imageData)
+            self.imageCache[url.absoluteString] = photoImage
             
-            // set key and value for image cache
-            self.imageCache[imageUrl.absoluteString] = photoImage
-            
-            // set image
             DispatchQueue.main.async {
                 self.image = photoImage
             }
-        }
+        })
     }
 }
-

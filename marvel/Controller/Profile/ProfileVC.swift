@@ -16,6 +16,8 @@ class ProfileVC: UIViewController {
     
     var currentUser: User?
     
+    //    var signedInUser: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +49,7 @@ class ProfileVC: UIViewController {
     
     func fetchCurrentUserData() {
         let token = try? keyChain.get("auth_token")
-
+        
         guard let url = URL(string: ACCOUNTS_URL + "users/me/") else { return }
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
@@ -62,11 +64,13 @@ class ProfileVC: UIViewController {
             }
             
             if let data = res.data {
-//                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//                print(json!)
+                //                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                //                print(json!)
                 let decoder = JSONDecoder()
                 let user = try? decoder.decode(User.self, from: data)
                 self.currentUser = user
+                let currentUserId = user?.id
+                try? self.keyChain.set("\(currentUserId!)", key: "currentUserId")
             }
             
             DispatchQueue.main.async {
@@ -103,7 +107,7 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 
 extension ProfileVC: ProfileCellDelegate {
     func handleFollowTapped(for cell: ProfileHeaderCell) {
-        print("Follow button tapped")
+        
     }
     
     func handleFollowersTapped(for cell: ProfileHeaderCell) {

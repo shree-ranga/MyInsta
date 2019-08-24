@@ -16,6 +16,8 @@ struct User: Codable {
     var bio: String
     var numberOfFollowers: Int
     var numberOfFollowing: Int
+    var followers: [Int] = [Int]()
+//    var isFollowed: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -25,6 +27,7 @@ struct User: Codable {
         case bio = "bio"
         case numberOfFollowers = "total_followers"
         case numberOfFollowing = "total_following"
+        case followers = "followers"
     }
 }
 

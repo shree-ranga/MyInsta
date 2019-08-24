@@ -151,6 +151,7 @@ extension SignupVC: SignupViewDelegate {
                     guard let data = res.data else { return }
                     let json = try? JSONSerialization.jsonObject(with: data, options: [])
                     guard let dict = json as? Dictionary<String, String> else { return }
+                    print("REGISTRATION DATA", dict)
                     if let auth_token = dict["token"] {
                         try? self.keyChain.set(auth_token, key: "auth_token")
                         print("Registration Successful...")

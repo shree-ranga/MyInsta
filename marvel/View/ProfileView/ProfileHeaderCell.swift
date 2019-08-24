@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class ProfileHeaderCell: UICollectionViewCell {
     
     static let cellId = "profileHeaderCellId"
+    
+    private let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     var delegate: ProfileCellDelegate?
     
@@ -22,6 +25,7 @@ class ProfileHeaderCell: UICollectionViewCell {
             guard let bio = user?.bio else { return }
             guard let numberOfFollowers = user?.numberOfFollowers else { return }
             guard let numberOfFollowing = user?.numberOfFollowing else  { return }
+            guard let followers = user?.followers else { return }
             
             fullNameLabel.text = fullName
             bioTextView.text = bio
@@ -34,6 +38,8 @@ class ProfileHeaderCell: UICollectionViewCell {
             let followingAttributedText = NSMutableAttributedString(string: "\(numberOfFollowing)", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
             followingAttributedText.append(NSAttributedString(string: " Following", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
             followingLabel.attributedText = followingAttributedText
+            
+            configureFollowButton()
         }
     }
     
@@ -58,7 +64,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 //        button.backgroundColor = UIColor.blue
         button.layer.cornerRadius = 5
-        button.layer.borderWidth = 0.5
+        button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
         button.addTarget(self, action: #selector(handleFollowTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -187,6 +193,27 @@ class ProfileHeaderCell: UICollectionViewCell {
     
     @objc func handleFollowingTapped() {
         delegate?.handleFollowingTapped(for: self)
+    }
+    
+    func configureFollowButton() {
+        let currentUserId = keyChain["currentUserId"]
+        guard let user = user else { return }
+        
+        if Int(currentUserId!)! == user.id {
+            followButton.setTitle("Edit Profile", for: .normal)
+        } else {
+            followButton.setTitle("Follow", for: .normal)
+            followButton.setTitleColor(UIColor.white, for: .normal)
+            followButton.backgroundColor = UIColor.blue
+            followButton.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if user.followers.contains(Int(currentUserId!)!) {
+            followButton.setTitle("Following", for: .normal)
+            followButton.setTitleColor(UIColor.white, for: .normal)
+            followButton.backgroundColor = UIColor.darkGray
+            followButton.layer.borderColor = UIColor.darkGray.cgColor
+        }
     }
     
     // MARK: - Initializers

@@ -49,6 +49,7 @@ class FeedVC: UIViewController {
             DispatchQueue.main.async {
                 // delete the token from the keychain
                 self.keyChain["auth_token"] = nil
+                self.keyChain["currentUserId"] = nil
                 let loginVC = LoginVC()
                 self.present(loginVC, animated: true, completion: nil)
             }
