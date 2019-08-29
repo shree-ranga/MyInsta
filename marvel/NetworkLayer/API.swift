@@ -98,7 +98,7 @@ final class API {
             }
             
             // Network logger
-            NetworkLogger.log(request: request)
+//            NetworkLogger.log(request: request)
             
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)

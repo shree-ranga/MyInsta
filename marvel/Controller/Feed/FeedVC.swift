@@ -24,7 +24,6 @@ class FeedVC: UIViewController {
     }
     
     // MARK: - Handlers
-    
     @objc func handleLogout() {
         let token = try? keyChain.get("auth_token")
         
@@ -41,20 +40,16 @@ class FeedVC: UIViewController {
             
             if let response = res.response {
                 print(response.httpStatusCode)
-//                if response.httpStatusCode != 204 {
-//                    return
-//                }
             }
             
             DispatchQueue.main.async {
                 // delete the token from the keychain
                 self.keyChain["auth_token"] = nil
-                self.keyChain["currentUserId"] = nil
+                self.keyChain["loggedInUserId"] = nil
                 let loginVC = LoginVC()
                 self.present(loginVC, animated: true, completion: nil)
             }
             print("Logout Successful...")
         }
     }
-    
 }

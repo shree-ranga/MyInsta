@@ -41,7 +41,7 @@ extension SignupVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             return
         }
         
-        // figure out why i need this
+        // figured out why i need this
         isImageSelected = true
         
         // configure profile photo button with selected image
@@ -55,7 +55,6 @@ extension SignupVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         dismiss(animated: true, completion: nil)
     }
 }
-
 
 extension SignupVC: SignupViewDelegate {
     
@@ -155,7 +154,6 @@ extension SignupVC: SignupViewDelegate {
                     if let auth_token = dict["token"] {
                         try? self.keyChain.set(auth_token, key: "auth_token")
                         print("Registration Successful...")
-                        
                         DispatchQueue.main.async {
                             //                            let mainVC = ViewController()
                             let mainVC = MainTabBarVC()

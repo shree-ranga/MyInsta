@@ -14,23 +14,27 @@ class ProfileVC: UIViewController {
     
     var profileView: ProfileView!
     
+    var currentUid: Int!
+    
     var currentUser: User?
     
-    //    var signedInUser: User?
+    var url: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
         
         configureCollectionView()
         
         if currentUser == nil {
-            fetchCurrentUserData()
+            url = URL(string: USERS_URL + "current/")!
+            fetchCurrentUserData(url: url)
         }
         
         if let currentUser = currentUser {
-            navigationItem.title = currentUser.userName
+            currentUid = currentUser.id
+            url = URL(string: USERS_URL + "\(currentUid!)/")!
+            fetchCurrentUserData(url: url)
         }
     }
     
@@ -44,24 +48,22 @@ class ProfileVC: UIViewController {
         profileView.collectionView.dataSource = self
         profileView.collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: ProfileHeaderCell.cellId)
         
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-//        profileView.collectionView.refreshControl = refreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        profileView.collectionView.refreshControl = refreshControl
     }
     
     // MARK: - Refresh
-//    @objc func handleRefresh() {
-//        currentUser = nil
-//        fetchCurrentUserData()
-//        profileView.collectionView.reloadData()
-//    }
+    @objc func handleRefresh() {
+        fetchCurrentUserData(url: url!)
+        profileView.collectionView.reloadData()
+    }
     
     // MARK: - API Calls
     
-    func fetchCurrentUserData() {
+    func fetchCurrentUserData(url: URL) {
+        print("Fetching current user data")
         let token = try? keyChain.get("auth_token")
-        
-        guard let url = URL(string: ACCOUNTS_URL + "users/me/") else { return }
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
         API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
@@ -75,25 +77,23 @@ class ProfileVC: UIViewController {
             }
             
             if let data = res.data {
-                //                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                //                print(json!)
                 let decoder = JSONDecoder()
                 let user = try? decoder.decode(User.self, from: data)
                 self.currentUser = user
-                let currentUserId = user?.id
-                try? self.keyChain.set("\(currentUserId!)", key: "currentUserId")
+                let loggedInUserId = user?.id
+                try? self.keyChain.set("\(loggedInUserId!)", key: "loggedInUserId")
             }
             
             DispatchQueue.main.async {
                 self.navigationItem.title = self.currentUser?.userName
                 self.profileView.collectionView.reloadData()
-//                self.profileView.collectionView.refreshControl?.endRefreshing()
+                self.profileView.collectionView.refreshControl?.endRefreshing()
             }
         }
     }
     
     func follow(id: Int, token: String, cell: ProfileHeaderCell) {
-        guard let url = URL(string: ACCOUNTS_URL + "users/me/") else { return }
+        guard let url = URL(string: USERS_URL + "follow-unfollow/") else { return }
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         API.requestHttpHeaders.setValue(value: "Token \(token)", forKey: "Authorization")
         API.httpBodyParameters.setValue(value: [id], forKey: "following")
@@ -161,7 +161,6 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 250)
     }
-    
 }
 
 extension ProfileVC: ProfileCellDelegate {

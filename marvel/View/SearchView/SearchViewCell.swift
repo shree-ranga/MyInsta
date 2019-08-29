@@ -14,13 +14,7 @@ class SearchViewCell: UICollectionViewCell {
     
     var user: User? {
         didSet {
-            guard let userName = user?.userName else { return }
-            guard let fullName = user?.fullName else { return }
-            guard let profileImageUrl = user?.profileImageUrl else { return }
-//            print(profileImageUrl)
-            profileImageView.loadImage(with: profileImageUrl)
-            userNameLabel.text = userName
-            fullNameLabel.text = fullName
+            configureCell()
         }
     }
     
@@ -59,9 +53,6 @@ class SearchViewCell: UICollectionViewCell {
     }
     
     func setupViews() {
-        // cell background color
-//        backgroundColor = .yellow
-        
         // MARK: - profile image view anchors
         addSubview(profileImageView)
         profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
@@ -78,6 +69,21 @@ class SearchViewCell: UICollectionViewCell {
         addSubview(fullNameLabel)
         fullNameLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 4).isActive = true
         fullNameLabel.leadingAnchor.constraint(equalTo: userNameLabel.leadingAnchor, constant: 0).isActive = true
+    }
+    
+    func configureCell() {
+        //            guard let userName = user?.userName else { return }
+        //            guard let fullName = user?.fullName else { return }
+        //            guard let profileImageUrl = user?.profileImageUrl else { return }
+        
+        userNameLabel.text = user?.userName
+        fullNameLabel.text = user?.fullName
+        
+        if let profileImageUrl = user?.profileImageUrl {
+            profileImageView.loadImage(with: profileImageUrl)
+        } else {
+            profileImageView.image = UIImage(named: "default")
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

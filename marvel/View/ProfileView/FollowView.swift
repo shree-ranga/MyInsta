@@ -26,7 +26,7 @@ class FollowView: UIView {
     }
     
     func setupViews() {
-        // view background color
+        // background color
         backgroundColor = .white
         
         addSubview(collectionView)

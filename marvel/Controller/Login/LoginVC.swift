@@ -24,7 +24,6 @@ class LoginVC: UIViewController {
         loginView = LoginView(frame: UIScreen.main.bounds)
         view.addSubview(loginView)
     }
-    
 }
 
 extension LoginVC: LoginViewDelegate {
@@ -67,7 +66,7 @@ extension LoginVC: LoginViewDelegate {
                         self.present(mainVC, animated: true, completion: nil)
                     }
                 } else {
-                    print(dict.values)
+                    print(dict)
                 }
             } catch let error{
                 print(error.localizedDescription)

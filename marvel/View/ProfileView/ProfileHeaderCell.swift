@@ -21,25 +21,27 @@ class ProfileHeaderCell: UICollectionViewCell {
         didSet {
 //            guard let userName = user?.userName else { return }
             guard let fullName = user?.fullName else { return }
-            guard let imageUrl = user?.profileImageUrl else { return }
+            if let imageUrl = user?.profileImageUrl {
+                profileImageView.loadImage(with: imageUrl)
+            } else {
+                profileImageView.image = UIImage(named: "default")
+            }
             guard let bio = user?.bio else { return }
             guard let numberOfFollowers = user?.numberOfFollowers else { return }
-            guard let numberOfFollowing = user?.numberOfFollowing else  { return }
-            guard let followers = user?.followers else { return }
+            guard let numberOfFollowing = user?.numberOfFollowing else { return }
             
             fullNameLabel.text = fullName
             bioTextView.text = bio
-            profileImageView.loadImage(with: imageUrl)
-            
+
             let followersAttributedText = NSMutableAttributedString(string: "\(numberOfFollowers)", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
             followersAttributedText.append(NSAttributedString(string: " Followers", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
             followersLabel.attributedText = followersAttributedText
-            
+
             let followingAttributedText = NSMutableAttributedString(string: "\(numberOfFollowing)", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
             followingAttributedText.append(NSAttributedString(string: " Following", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
             followingLabel.attributedText = followingAttributedText
             
-            configureFollowButton()
+//            configureFollowButton()
         }
     }
     
@@ -137,8 +139,6 @@ class ProfileHeaderCell: UICollectionViewCell {
     }()
     
     func setupViews() {
-        // cell background color
-//        backgroundColor = .yellow
         
         // MARK: - profile Image anchors
         addSubview(profileImageView)
@@ -195,26 +195,26 @@ class ProfileHeaderCell: UICollectionViewCell {
         delegate?.handleFollowingTapped(for: self)
     }
     
-    func configureFollowButton() {
-        let currentUserId = keyChain["currentUserId"]
-        guard let user = user else { return }
-        
-        if Int(currentUserId!)! == user.id {
-            followButton.setTitle("Edit Profile", for: .normal)
-        } else {
-            followButton.setTitle("Follow", for: .normal)
-            followButton.setTitleColor(UIColor.white, for: .normal)
-            followButton.backgroundColor = UIColor.blue
-            followButton.layer.borderColor = UIColor.blue.cgColor
-        }
-        
-        if user.followers.contains(Int(currentUserId!)!) {
-            followButton.setTitle("Following", for: .normal)
-            followButton.setTitleColor(UIColor.white, for: .normal)
-            followButton.backgroundColor = UIColor.darkGray
-            followButton.layer.borderColor = UIColor.darkGray.cgColor
-        }
-    }
+//    func configureFollowButton() {
+//        let currentUserId = Int(keyChain["currentUserId"]!)!
+//        guard let user = user else { return }
+//
+//        if currentUserId == user.id {
+//            followButton.setTitle("Edit Profile", for: .normal)
+//        } else {
+//            followButton.setTitle("Follow", for: .normal)
+//            followButton.setTitleColor(UIColor.white, for: .normal)
+//            followButton.backgroundColor = UIColor.blue
+//            followButton.layer.borderColor = UIColor.blue.cgColor
+//        }
+//
+//            if user.followers.contains(currentUserId) {
+//                followButton.setTitle("Following", for: .normal)
+//                followButton.setTitleColor(UIColor.white, for: .normal)
+//                followButton.backgroundColor = UIColor.darkGray
+//                followButton.layer.borderColor = UIColor.darkGray.cgColor
+//        }
+//    }
     
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -225,5 +225,5 @@ class ProfileHeaderCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
+

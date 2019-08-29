@@ -35,6 +35,17 @@ class FollowVC: UIViewController {
         followView.collectionView.delegate = self
         followView.collectionView.dataSource = self
         followView.collectionView.register(FollowCell.self, forCellWithReuseIdentifier: FollowCell.cellId)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        followView.collectionView.refreshControl = refreshControl
+    }
+    
+    // MARK: - Refresh
+    @objc func handleRefresh() {
+        users.removeAll(keepingCapacity: false)
+        fetchUsers()
+        followView.collectionView.reloadData()
     }
     
     func configureNavbar() {
@@ -57,7 +68,7 @@ class FollowVC: UIViewController {
         print("Fetching followers")
         guard let currentUser = user else { return }
         let uid = currentUser.id
-        guard let url = URL(string: ACCOUNTS_URL + "users/\(uid)/followers/") else { return }
+        guard let url = URL(string: USERS_URL + "\(uid)/followers/") else { return }
         API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
@@ -76,6 +87,7 @@ class FollowVC: UIViewController {
             }
             
             DispatchQueue.main.async {
+                self.followView.collectionView.refreshControl?.endRefreshing()
                 self.followView.collectionView.reloadData()
             }
         }
@@ -104,6 +116,7 @@ class FollowVC: UIViewController {
             }
             
             DispatchQueue.main.async {
+                self.followView.collectionView.refreshControl?.endRefreshing()
                 self.followView.collectionView.reloadData()
             }
         }
@@ -136,9 +149,8 @@ extension FollowVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         // profile instance
         let profileVC = ProfileVC()
         profileVC.currentUser = user
-
+        
         // push profile vc
         navigationController?.pushViewController(profileVC, animated: true)
     }
-    
 }

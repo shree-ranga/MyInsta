@@ -21,7 +21,6 @@ protocol SignupViewDelegate {
 
 protocol ProfileCellDelegate {
     func handleFollowTapped(for cell: ProfileHeaderCell)
-//    func setUserStats(for cell: ProfileHeaderCell)
     func handleFollowersTapped(for cell: ProfileHeaderCell)
     func handleFollowingTapped(for cell: ProfileHeaderCell)
 }

@@ -21,7 +21,10 @@ class SearchVC: UIViewController {
         configureCollectionView()
         
         fetchAllUsers()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     func setupViews() {
@@ -33,11 +36,21 @@ class SearchVC: UIViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchViewCell.self, forCellWithReuseIdentifier: SearchViewCell.cellId)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        searchView.collectionView.refreshControl = refreshControl
+    }
+    
+    @objc func handleRefresh() {
+        users.removeAll(keepingCapacity: false)
+        fetchAllUsers()
+        searchView.collectionView.reloadData()
     }
     
     // MARK: - API calls
     func fetchAllUsers() {
-        guard let url = URL(string: ACCOUNTS_URL + "users/") else { return }
+        guard let url = URL(string: USERS_URL) else { return }
         API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
@@ -48,10 +61,6 @@ class SearchVC: UIViewController {
             }
             
             if let data = res.data {
-                // before swift 4
-//                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//                let jsonArray = json as! [[String: Any]]
-//                print(jsonArray)
                 let decoder = JSONDecoder()
                 let userList = try? decoder.decode([User].self, from: data)
                 guard let users = userList else { return }
@@ -97,5 +106,4 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         // push profile vc
         navigationController?.pushViewController(profileVC, animated: true)
     }
-    
 }
