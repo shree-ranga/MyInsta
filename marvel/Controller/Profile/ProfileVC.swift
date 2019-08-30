@@ -14,7 +14,7 @@ class ProfileVC: UIViewController {
     
     var profileView: ProfileView!
     
-//    var currentUid: Int?
+    //    var currentUid: Int?
     
     var currentUser: User?
     
@@ -35,13 +35,10 @@ class ProfileVC: UIViewController {
         }
         
         if let currentUser = currentUser {
-//            currentUid = currentUser.id
             url = URL(string: USERS_URL + "\(currentUser.id)/")!
             fetchCurrentUserData(url: url)
             isLoggedInUser = false
         }
-        
-//       print(isLoggedInUser)
     }
     
     func setupViews() {
@@ -52,8 +49,12 @@ class ProfileVC: UIViewController {
     func configureCollectionView() {
         profileView.collectionView.delegate = self
         profileView.collectionView.dataSource = self
-        profileView.collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: ProfileHeaderCell.cellId)
         
+        // cell registration
+        profileView.collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: ProfileHeaderCell.cellId)
+        profileView.collectionView.register(GridCell.self, forCellWithReuseIdentifier: GridCell.cellId)
+        
+        // refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         profileView.collectionView.refreshControl = refreshControl
@@ -93,7 +94,6 @@ class ProfileVC: UIViewController {
                 }
             }
             
-
             DispatchQueue.main.async {
                 self.navigationItem.title = self.currentUser?.userName
                 self.profileView.collectionView.reloadData()
@@ -154,22 +154,41 @@ class ProfileVC: UIViewController {
 extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        if section == 0{
+            return 1
+        }
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileHeaderCell.cellId, for: indexPath) as! ProfileHeaderCell
-        cell.delegate = self
-        cell.user = currentUser
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileHeaderCell.cellId, for: indexPath) as! ProfileHeaderCell
+            cell.delegate = self
+            cell.user = currentUser
+            return cell
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCell.cellId, for: indexPath) as! GridCell
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 250)
+        if indexPath.section == 0 {
+            return CGSize(width: view.frame.width, height: 208)
+        }
+        let width = (view.frame.width - 2) / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
 }
 

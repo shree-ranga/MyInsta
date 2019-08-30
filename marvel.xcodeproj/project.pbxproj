@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2997ED7AB531FE8814168184 /* Pods_marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C63C8C614660B5B2386C383 /* Pods_marvel.framework */; };
+		743BE144231901600016ACAF /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE143231901600016ACAF /* GridCell.swift */; };
 		7443FCF222F8079D00757A33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF122F8079D00757A33 /* LoginView.swift */; };
 		7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF522F80A7A00757A33 /* LoginVC.swift */; };
 		7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456052822FE6033000C59F3 /* MultiPartFormBody.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		4F0405C498BE1A2DAB9627D6 /* Pods-marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.release.xcconfig"; sourceTree = "<group>"; };
+		743BE143231901600016ACAF /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		7443FCF122F8079D00757A33 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7443FCF522F80A7A00757A33 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7456052822FE6033000C59F3 /* MultiPartFormBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormBody.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				7479951B23076B77009A636F /* ProfileHeaderCell.swift */,
 				745F4968230F5E2400D3F483 /* FollowView.swift */,
 				745F496A230F5E2E00D3F483 /* FollowCell.swift */,
+				743BE143231901600016ACAF /* GridCell.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
 				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,
 				745A4BF12306711000ADC6E7 /* SearchVC.swift in Sources */,
+				743BE144231901600016ACAF /* GridCell.swift in Sources */,
 				7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */,
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
