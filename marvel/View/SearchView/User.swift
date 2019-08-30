@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import KeychainAccess
 
 struct User: Codable {
+    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     var id: Int
     var userName: String
     var fullName: String
@@ -16,6 +18,7 @@ struct User: Codable {
     var bio: String?
     var numberOfFollowers: Int?
     var numberOfFollowing: Int?
+    var isLoggedInUserFollowing: Bool!
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -27,4 +30,7 @@ struct User: Codable {
         case numberOfFollowing = "total_following"
     }
 }
+
+
+
 

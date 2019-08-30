@@ -20,3 +20,6 @@ let REGISTER_URL = AUTH_URL + "register/"
 
 let ACCOUNTS_URL = BASE_URL + "/accounts/"
 let USERS_URL = ACCOUNTS_URL + "users/"
+
+let FOLLOW_UNFOLLOW_URL = USERS_URL + "follow-unfollow/"
+let CHECK_FOLLOW_URL = USERS_URL + "check-follow/"

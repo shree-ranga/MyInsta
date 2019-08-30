@@ -19,7 +19,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     
     var user: User? {
         didSet {
-//            guard let userName = user?.userName else { return }
+            //            guard let userName = user?.userName else { return }
             guard let fullName = user?.fullName else { return }
             if let imageUrl = user?.profileImageUrl {
                 profileImageView.loadImage(with: imageUrl)
@@ -32,16 +32,16 @@ class ProfileHeaderCell: UICollectionViewCell {
             
             fullNameLabel.text = fullName
             bioTextView.text = bio
-
+            
             let followersAttributedText = NSMutableAttributedString(string: "\(numberOfFollowers)", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
             followersAttributedText.append(NSAttributedString(string: " Followers", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
             followersLabel.attributedText = followersAttributedText
-
+            
             let followingAttributedText = NSMutableAttributedString(string: "\(numberOfFollowing)", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
             followingAttributedText.append(NSAttributedString(string: " Following", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
             followingLabel.attributedText = followingAttributedText
             
-//            configureFollowButton()
+            configureFollowButton()
         }
     }
     
@@ -64,7 +64,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         button.setTitle("Loading...", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-//        button.backgroundColor = UIColor.blue
+        //        button.backgroundColor = UIColor.blue
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
@@ -90,10 +90,10 @@ class ProfileHeaderCell: UICollectionViewCell {
         tv.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis disap"
         tv.font = UIFont.systemFont(ofSize: 14)
         tv.textAlignment = .justified
-//        tv.backgroundColor = .clear
+        //        tv.backgroundColor = .clear
         tv.backgroundColor = .yellow
         tv.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        tv.textContainer.lineFragmentPadding = 0
+        //        tv.textContainer.lineFragmentPadding = 0
         tv.isScrollEnabled = false
         tv.isEditable = false
         tv.isSelectable = false
@@ -104,7 +104,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     
     // MARK: - followers label
     lazy var followersLabel: UILabel = {
-
+        
         let label = UILabel()
         
         let attributedText = NSMutableAttributedString(string: "999", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
@@ -150,18 +150,18 @@ class ProfileHeaderCell: UICollectionViewCell {
         // MARK: - full name label anchors
         addSubview(fullNameLabel)
         fullNameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 12).isActive = true
-//        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: -8).isActive = true
-//        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
+        //        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: -8).isActive = true
+        //        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         fullNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
         fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         
         // MARK: - follow button anchors
         addSubview(followButton)
-//        followButton.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 16).isActive = true
+        //        followButton.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 16).isActive = true
         followButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -4).isActive = true
         followButton.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 16).isActive = true
         followButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-//        followButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
+        //        followButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         followButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         
@@ -195,26 +195,61 @@ class ProfileHeaderCell: UICollectionViewCell {
         delegate?.handleFollowingTapped(for: self)
     }
     
-//    func configureFollowButton() {
-//        let currentUserId = Int(keyChain["currentUserId"]!)!
-//        guard let user = user else { return }
-//
-//        if currentUserId == user.id {
-//            followButton.setTitle("Edit Profile", for: .normal)
-//        } else {
-//            followButton.setTitle("Follow", for: .normal)
-//            followButton.setTitleColor(UIColor.white, for: .normal)
-//            followButton.backgroundColor = UIColor.blue
-//            followButton.layer.borderColor = UIColor.blue.cgColor
-//        }
-//
-//            if user.followers.contains(currentUserId) {
-//                followButton.setTitle("Following", for: .normal)
-//                followButton.setTitleColor(UIColor.white, for: .normal)
-//                followButton.backgroundColor = UIColor.darkGray
-//                followButton.layer.borderColor = UIColor.darkGray.cgColor
-//        }
-//    }
+    func configureFollowButton() {
+        guard let user = user else { return }
+        // TODO: - Move this to login page
+        guard let loggedInUserId = Int(keyChain["loggedInUserId"]!) else { return }
+        let userId = user.id
+        
+        if loggedInUserId == userId {
+            followButton.setTitle("Edit Profile", for: .normal)
+        } else {
+            checkIfUserIsFollowed(id: userId) { (followed) in
+                if followed {
+                    DispatchQueue.main.async {
+                        self.followButton.setTitle("Following", for: .normal)
+                        self.followButton.setTitleColor(UIColor.white, for: .normal)
+                        self.followButton.backgroundColor = UIColor.darkGray
+                        self.followButton.layer.borderColor = UIColor.darkGray.cgColor
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.followButton.setTitle("Follow", for: .normal)
+                        self.followButton.setTitleColor(UIColor.white, for: .normal)
+                        self.followButton.backgroundColor = UIColor.blue
+                        self.followButton.layer.borderColor = UIColor.blue.cgColor
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkIfUserIsFollowed(id: Int, completion: @escaping (Bool) -> Void) {
+        let token = keyChain["auth_token"]
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        API.httpBodyParameters.setValue(value: id, forKey: "following_user_id")
+        let url = URL(string: CHECK_FOLLOW_URL)!
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                guard let dict = json as? [String: Bool] else { return }
+                if dict["following"]! == true {
+                    completion(true)
+                } else if dict["following"]! == false{
+                    completion(false)
+                }
+            }
+        }
+    }
     
     // MARK: - Initializers
     override init(frame: CGRect) {

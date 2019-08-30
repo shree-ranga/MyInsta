@@ -69,6 +69,7 @@ class SearchVC: UIViewController {
             
             // reload collection view
             DispatchQueue.main.async {
+                self.searchView.collectionView.refreshControl?.endRefreshing()
                 self.searchView.collectionView.reloadData()
             }
         }

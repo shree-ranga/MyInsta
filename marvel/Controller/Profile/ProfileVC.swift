@@ -14,11 +14,13 @@ class ProfileVC: UIViewController {
     
     var profileView: ProfileView!
     
-    var currentUid: Int!
+//    var currentUid: Int?
     
     var currentUser: User?
     
     var url: URL!
+    
+    var isLoggedInUser: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +30,18 @@ class ProfileVC: UIViewController {
         
         if currentUser == nil {
             url = URL(string: USERS_URL + "current/")!
+            isLoggedInUser = true
             fetchCurrentUserData(url: url)
         }
         
         if let currentUser = currentUser {
-            currentUid = currentUser.id
-            url = URL(string: USERS_URL + "\(currentUid!)/")!
+//            currentUid = currentUser.id
+            url = URL(string: USERS_URL + "\(currentUser.id)/")!
             fetchCurrentUserData(url: url)
+            isLoggedInUser = false
         }
+        
+//       print(isLoggedInUser)
     }
     
     func setupViews() {
@@ -80,10 +86,14 @@ class ProfileVC: UIViewController {
                 let decoder = JSONDecoder()
                 let user = try? decoder.decode(User.self, from: data)
                 self.currentUser = user
-                let loggedInUserId = user?.id
-                try? self.keyChain.set("\(loggedInUserId!)", key: "loggedInUserId")
+                
+                if self.isLoggedInUser {
+                    guard let loggedInUserId = user?.id else { return }
+                    self.keyChain["loggedInUserId"] = "\(loggedInUserId)"
+                }
             }
             
+
             DispatchQueue.main.async {
                 self.navigationItem.title = self.currentUser?.userName
                 self.profileView.collectionView.reloadData()
@@ -93,11 +103,11 @@ class ProfileVC: UIViewController {
     }
     
     func follow(id: Int, token: String, cell: ProfileHeaderCell) {
-        guard let url = URL(string: USERS_URL + "follow-unfollow/") else { return }
+        let url = URL(string: FOLLOW_UNFOLLOW_URL)!
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         API.requestHttpHeaders.setValue(value: "Token \(token)", forKey: "Authorization")
-        API.httpBodyParameters.setValue(value: [id], forKey: "following")
-        API.makeRequest(toURL: url, withHttpMethod: .patch) { (res) in
+        API.httpBodyParameters.setValue(value: id, forKey: "following_user_id")
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
                 return
@@ -117,11 +127,11 @@ class ProfileVC: UIViewController {
     }
     
     func unfollow(id: Int, token: String, cell: ProfileHeaderCell) {
-        guard let url = URL(string: ACCOUNTS_URL + "users/me/") else { return }
+        let url = URL(string: FOLLOW_UNFOLLOW_URL)!
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
         API.requestHttpHeaders.setValue(value: "Token \(token)", forKey: "Authorization")
-        API.httpBodyParameters.setValue(value: [id], forKey: "following")
-        API.makeRequest(toURL: url, withHttpMethod: .patch) { (res) in
+        API.httpBodyParameters.setValue(value: id, forKey: "following_user_id")
+        API.makeRequest(toURL: url, withHttpMethod: .delete) { (res) in
             if let error = res.error {
                 print(error.localizedDescription)
                 return
