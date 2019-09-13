@@ -124,46 +124,25 @@ extension SignupVC: SignupViewDelegate {
                 print(response.httpStatusCode)
             }
             
-            if let data = results.data {
-                do {
-                    let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                    guard let dict = jsonResponse as? Dictionary<String, AnyObject> else { return }
-                    print(dict)
-                } catch let error {
-                    print(error.localizedDescription)
+            guard let data = results.data else { return }
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                guard let dict = jsonResponse as? Dictionary<String, AnyObject> else { return }
+                let token = dict["token"] as! String
+                let id = dict["id"] as! Int
+                self.keyChain["auth_token"] = token
+                self.keyChain["id"] = "\(id)"
+                print("Registration Successful...")
+                DispatchQueue.main.async {
+                    let mainVC = MainTabBarVC()
+                    self.present(mainVC, animated: true, completion: nil)
                 }
                 
-                API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-                API.httpBodyParameters.setValue(value: userName.lowercased(), forKey: "username")
-                API.httpBodyParameters.setValue(value: password.lowercased(), forKey: "password")
-                let authTokenUrl = URL(string: REGISTER_URL + "api-auth-token/")!
-                
-                API.makeRequest(toURL: authTokenUrl, withHttpMethod: .post, completion: { (res) in
-                    if let error = res.error {
-                        print(error.localizedDescription)
-                    }
-                    
-                    if let response = res.response {
-                        print(response.httpStatusCode)
-                    }
-                    
-                    guard let data = res.data else { return }
-                    let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                    guard let dict = json as? Dictionary<String, String> else { return }
-                    print("REGISTRATION DATA", dict)
-                    if let auth_token = dict["token"] {
-                        try? self.keyChain.set(auth_token, key: "auth_token")
-                        print("Registration Successful...")
-                        DispatchQueue.main.async {
-                            //                            let mainVC = ViewController()
-                            let mainVC = MainTabBarVC()
-                            self.present(mainVC, animated: true, completion: nil)
-                        }
-                    } else {
-                        print("Unable to register")
-                    }
-                })
+            } catch let error {
+                print(error.localizedDescription)
+                return
             }
+            
         }
     }
     

@@ -29,7 +29,8 @@ class ProfileVC: UIViewController {
         configureCollectionView()
         
         if currentUser == nil {
-            url = URL(string: USERS_URL + "current/")!
+            let currentUid = try? keyChain.get("id")
+            url = URL(string: USERS_URL + "\(currentUid!)/")!
             isLoggedInUser = true
             fetchCurrentUserData(url: url)
         }
@@ -87,11 +88,6 @@ class ProfileVC: UIViewController {
                 let decoder = JSONDecoder()
                 let user = try? decoder.decode(User.self, from: data)
                 self.currentUser = user
-                
-                if self.isLoggedInUser {
-                    guard let loggedInUserId = user?.id else { return }
-                    self.keyChain["loggedInUserId"] = "\(loggedInUserId)"
-                }
             }
             
             DispatchQueue.main.async {

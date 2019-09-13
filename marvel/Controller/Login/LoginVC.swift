@@ -42,34 +42,28 @@ extension LoginVC: LoginViewDelegate {
             if let error = res.error {
                 print(error.localizedDescription)
             }
-
+            
             if let statusCode = res.response {
                 print(statusCode.httpStatusCode)
             }
-
+            
             guard let data = res.data else { return }
-
+            
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                let dict = jsonResponse as! Dictionary<String, AnyObject>
-
-                if let token = dict["token"] {
-                    let auth_token = token as! String
-                    do {
-                        try self.keyChain.set(auth_token, key: "auth_token")
-                        print("Login Successful...")
-                    } catch let error{
-                        print(error.localizedDescription)
-                    }
-                    DispatchQueue.main.async {
-                        let mainVC = MainTabBarVC()
-                        self.present(mainVC, animated: true, completion: nil)
-                    }
-                } else {
-                    print(dict)
+                guard let dict = jsonResponse as? Dictionary<String, AnyObject> else { return }
+                let token = dict["token"] as! String
+                let id = dict["id"] as! Int
+                self.keyChain["auth_token"] = token
+                self.keyChain["id"] = "\(id)"
+                print("Login Successful....")
+                DispatchQueue.main.async {
+                    let mainVC = MainTabBarVC()
+                    self.present(mainVC, animated: true, completion: nil)
                 }
-            } catch let error{
+            } catch let error {
                 print(error.localizedDescription)
+                return
             }
         }
     }

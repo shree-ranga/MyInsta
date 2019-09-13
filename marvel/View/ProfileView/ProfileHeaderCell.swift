@@ -49,7 +49,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     let profileImageViewWidthHeight: CGFloat = 80
     lazy var profileImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.image = UIImage(named: "srr")
+//        iv.image = UIImage(named: "srr")
         iv.layer.cornerRadius = profileImageViewWidthHeight / 2
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
@@ -76,7 +76,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     // MARK: - full name label
     lazy var fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Shree Ranga Raju"
+//        label.text = "Shree Ranga Raju"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +107,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         
         let label = UILabel()
         
-        let attributedText = NSMutableAttributedString(string: "999", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
+        let attributedText = NSMutableAttributedString(string: "", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
         attributedText.append(NSAttributedString(string: " Followers", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         
@@ -125,7 +125,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     lazy var followingLabel: UILabel = {
         let label = UILabel()
         
-        let attributedText = NSMutableAttributedString(string: "999", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
+        let attributedText = NSMutableAttributedString(string: "", attributes: [.font: UIFont.boldSystemFont(ofSize: 16)])
         attributedText.append(NSAttributedString(string: " Following", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         
@@ -198,7 +198,7 @@ class ProfileHeaderCell: UICollectionViewCell {
     func configureFollowButton() {
         guard let user = user else { return }
         // TODO: - Move this to login page
-        guard let loggedInUserId = Int(keyChain["loggedInUserId"]!) else { return }
+        guard let loggedInUserId = Int(keyChain["id"]!) else { return }
         let userId = user.id
         
         if loggedInUserId == userId {
