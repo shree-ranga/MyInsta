@@ -18,7 +18,6 @@ struct User: Codable {
     var bio: String?
     var numberOfFollowers: Int?
     var numberOfFollowing: Int?
-    var isLoggedInUserFollowing: Bool!
     
     enum CodingKeys: String, CodingKey {
         case id = "id"

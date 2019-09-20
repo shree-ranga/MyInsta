@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2997ED7AB531FE8814168184 /* Pods_marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C63C8C614660B5B2386C383 /* Pods_marvel.framework */; };
 		743BE144231901600016ACAF /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE143231901600016ACAF /* GridCell.swift */; };
+		743BE147232C59B60016ACAF /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE146232C59B60016ACAF /* AddPostView.swift */; };
 		7443FCF222F8079D00757A33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF122F8079D00757A33 /* LoginView.swift */; };
 		7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443FCF522F80A7A00757A33 /* LoginVC.swift */; };
 		7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456052822FE6033000C59F3 /* MultiPartFormBody.swift */; };
@@ -41,11 +42,16 @@
 		748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A222CDA3AD0026999D /* ServerResponse.swift */; };
 		748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820A322CDA3AD0026999D /* HttpMethod.swift */; };
 		748820AC22CDAE250026999D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748820AB22CDAE250026999D /* Constants.swift */; };
+		74AB42A6233422F400912573 /* SelectImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A5233422F400912573 /* SelectImageVC.swift */; };
+		74AB42A8233423BE00912573 /* SelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A7233423BE00912573 /* SelectImageView.swift */; };
+		74AB42AA2334240B00912573 /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A92334240B00912573 /* SelectPhotoCell.swift */; };
+		74AB42AC2334241A00912573 /* SelectPhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F0405C498BE1A2DAB9627D6 /* Pods-marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.release.xcconfig"; sourceTree = "<group>"; };
 		743BE143231901600016ACAF /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		743BE146232C59B60016ACAF /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 		7443FCF122F8079D00757A33 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7443FCF522F80A7A00757A33 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7456052822FE6033000C59F3 /* MultiPartFormBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormBody.swift; sourceTree = "<group>"; };
@@ -80,6 +86,10 @@
 		748820A222CDA3AD0026999D /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		748820A322CDA3AD0026999D /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		748820AB22CDAE250026999D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		74AB42A5233422F400912573 /* SelectImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageVC.swift; sourceTree = "<group>"; };
+		74AB42A7233423BE00912573 /* SelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageView.swift; sourceTree = "<group>"; };
+		74AB42A92334240B00912573 /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
+		74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeaderCell.swift; sourceTree = "<group>"; };
 		7C63C8C614660B5B2386C383 /* Pods_marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +112,17 @@
 				7C63C8C614660B5B2386C383 /* Pods_marvel.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		743BE145232C59820016ACAF /* AddPostView */ = {
+			isa = PBXGroup;
+			children = (
+				743BE146232C59B60016ACAF /* AddPostView.swift */,
+				74AB42A7233423BE00912573 /* SelectImageView.swift */,
+				74AB42A92334240B00912573 /* SelectPhotoCell.swift */,
+				74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */,
+			);
+			path = AddPostView;
 			sourceTree = "<group>";
 		};
 		7443FCF322F808D600757A33 /* LoginView */ = {
@@ -159,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				745A4BF22306711D00ADC6E7 /* AddPostVC.swift */,
+				74AB42A5233422F400912573 /* SelectImageVC.swift */,
 			);
 			path = AddPost;
 			sourceTree = "<group>";
@@ -260,6 +282,7 @@
 		7488209B22CD95470026999D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				743BE145232C59820016ACAF /* AddPostView */,
 				7479951F2309044D009A636F /* SearchView */,
 				7479951823076B4D009A636F /* ProfileView */,
 				7443FCF322F808D600757A33 /* LoginView */,
@@ -429,6 +452,7 @@
 			files = (
 				745A4BE523065BB400ADC6E7 /* NetworkLogger.swift in Sources */,
 				7479951E2308F4C8009A636F /* CustomImageView.swift in Sources */,
+				74AB42A8233423BE00912573 /* SelectImageView.swift in Sources */,
 				7479952323090483009A636F /* SearchViewCell.swift in Sources */,
 				745A4BF32306711D00ADC6E7 /* AddPostVC.swift in Sources */,
 				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
@@ -443,12 +467,15 @@
 				745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */,
 				7479951C23076B77009A636F /* ProfileHeaderCell.swift in Sources */,
 				7462E6A922F92763002D4C19 /* Protocols.swift in Sources */,
+				74AB42AC2334241A00912573 /* SelectPhotoHeaderCell.swift in Sources */,
 				7475708C230119CC004701F2 /* API.swift in Sources */,
 				745F496D230F5E3A00D3F483 /* FollowVC.swift in Sources */,
 				745A4BF52306712C00ADC6E7 /* NotificationsVC.swift in Sources */,
 				745F4969230F5E2400D3F483 /* FollowView.swift in Sources */,
 				7479952123090479009A636F /* SearchView.swift in Sources */,
 				7443FCF222F8079D00757A33 /* LoginView.swift in Sources */,
+				74AB42AA2334240B00912573 /* SelectPhotoCell.swift in Sources */,
+				743BE147232C59B60016ACAF /* AddPostView.swift in Sources */,
 				7462E6AD22F9390E002D4C19 /* SignupVC.swift in Sources */,
 				745A4BF12306711000ADC6E7 /* SearchVC.swift in Sources */,
 				743BE144231901600016ACAF /* GridCell.swift in Sources */,
@@ -456,6 +483,7 @@
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
 				748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */,
+				74AB42A6233422F400912573 /* SelectImageVC.swift in Sources */,
 				7479951A23076B6C009A636F /* ProfileView.swift in Sources */,
 				748820AC22CDAE250026999D /* Constants.swift in Sources */,
 			);

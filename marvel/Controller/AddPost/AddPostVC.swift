@@ -10,8 +10,16 @@ import UIKit
 
 class AddPostVC: UIViewController {
     
+    var addPostView: AddPostView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+    }
+    
+    func setupViews() {
+        addPostView = AddPostView(frame: UIScreen.main.bounds)
+        view.addSubview(addPostView)
     }
     
 }
