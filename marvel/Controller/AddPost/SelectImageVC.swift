@@ -97,7 +97,9 @@ class SelectImageVC: UIViewController {
     }
     
     @objc func handleNext() {
-        print("Next tapped")
+        let addPostVC = AddPostVC()
+        addPostVC.selectedImage = selectedImage
+        navigationController?.pushViewController(addPostVC, animated: true)
     }
 }
 
