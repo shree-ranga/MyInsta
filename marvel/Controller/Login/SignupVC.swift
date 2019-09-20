@@ -118,6 +118,7 @@ extension SignupVC: SignupViewDelegate {
         API.makeRequest(toURL: registerUrl, withHttpMethod: .post) { (results) in
             if let error = results.error {
                 print(error.localizedDescription)
+                return
             }
             
             if let response = results.response {
