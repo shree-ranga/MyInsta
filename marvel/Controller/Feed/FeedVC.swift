@@ -13,14 +13,29 @@ class FeedVC: UIViewController {
     
     let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
+    var feedView: FeedView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViews()
         configureNavBar()
+        configureCV()
+    }
+    
+    func setupViews() {
+        feedView = FeedView(frame: UIScreen.main.bounds)
+        view.addSubview(feedView)
     }
     
     func configureNavBar() {
+        navigationItem.title = "Home"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+    }
+    
+    func configureCV() {
+        feedView.collectionView.delegate = self
+        feedView.collectionView.dataSource = self
+        feedView.collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.cellId)
     }
     
     // MARK: - Handlers
@@ -51,5 +66,29 @@ class FeedVC: UIViewController {
             }
             print("Logout Successful...")
         }
+    }
+}
+
+extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.cellId, for: indexPath) as! FeedCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: view.frame.width + 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }

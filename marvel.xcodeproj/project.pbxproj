@@ -47,6 +47,9 @@
 		74AB42AA2334240B00912573 /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A92334240B00912573 /* SelectPhotoCell.swift */; };
 		74AB42AC2334241A00912573 /* SelectPhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */; };
 		74AB42AE23348C7400912573 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42AD23348C7400912573 /* Post.swift */; };
+		74AB42B12335D6CC00912573 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42B02335D6CC00912573 /* FeedView.swift */; };
+		74AB42B32335D6D700912573 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42B22335D6D700912573 /* FeedCell.swift */; };
+		74AB42B62335D77600912573 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42B52335D77600912573 /* CommentsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,9 @@
 		74AB42A92334240B00912573 /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
 		74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeaderCell.swift; sourceTree = "<group>"; };
 		74AB42AD23348C7400912573 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = marvel/View/AddPostView/Post.swift; sourceTree = SOURCE_ROOT; };
+		74AB42B02335D6CC00912573 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		74AB42B22335D6D700912573 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		74AB42B52335D77600912573 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		7C63C8C614660B5B2386C383 /* Pods_marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				745A4BEE2306710700ADC6E7 /* FeedVC.swift */,
+				74AB42B52335D77600912573 /* CommentsVC.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -284,6 +291,7 @@
 		7488209B22CD95470026999D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				74AB42AF2335D6B200912573 /* FeedView */,
 				743BE145232C59820016ACAF /* AddPostView */,
 				7479951F2309044D009A636F /* SearchView */,
 				7479951823076B4D009A636F /* ProfileView */,
@@ -323,6 +331,23 @@
 				7479951D2308F4C8009A636F /* CustomImageView.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		74AB42AF2335D6B200912573 /* FeedView */ = {
+			isa = PBXGroup;
+			children = (
+				74AB42B02335D6CC00912573 /* FeedView.swift */,
+				74AB42B22335D6D700912573 /* FeedCell.swift */,
+				74AB42B42335D75700912573 /* CommetnsVC */,
+			);
+			path = FeedView;
+			sourceTree = "<group>";
+		};
+		74AB42B42335D75700912573 /* CommetnsVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CommetnsVC;
 			sourceTree = "<group>";
 		};
 		F792360D7DB6E238D8CD8F8A /* Pods */ = {
@@ -461,11 +486,13 @@
 				7462E6AB22F93901002D4C19 /* SignupView.swift in Sources */,
 				7479952523090C86009A636F /* User.swift in Sources */,
 				748820A522CDA3AD0026999D /* ServerResults.swift in Sources */,
+				74AB42B12335D6CC00912573 /* FeedView.swift in Sources */,
 				745A4BEF2306710700ADC6E7 /* FeedVC.swift in Sources */,
 				745F496B230F5E2E00D3F483 /* FollowCell.swift in Sources */,
 				745A4BE823066E0000ADC6E7 /* MainTabBarVC.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
+				74AB42B32335D6D700912573 /* FeedCell.swift in Sources */,
 				74AB42AE23348C7400912573 /* Post.swift in Sources */,
 				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
 				745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */,
@@ -485,6 +512,7 @@
 				743BE144231901600016ACAF /* GridCell.swift in Sources */,
 				7443FCF622F80A7A00757A33 /* LoginVC.swift in Sources */,
 				7488208822CD941E0026999D /* AppDelegate.swift in Sources */,
+				74AB42B62335D77600912573 /* CommentsVC.swift in Sources */,
 				748820A822CDA3AD0026999D /* HttpMethod.swift in Sources */,
 				748820A722CDA3AD0026999D /* ServerResponse.swift in Sources */,
 				74AB42A6233422F400912573 /* SelectImageVC.swift in Sources */,
