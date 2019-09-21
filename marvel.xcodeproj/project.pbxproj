@@ -46,6 +46,7 @@
 		74AB42A8233423BE00912573 /* SelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A7233423BE00912573 /* SelectImageView.swift */; };
 		74AB42AA2334240B00912573 /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42A92334240B00912573 /* SelectPhotoCell.swift */; };
 		74AB42AC2334241A00912573 /* SelectPhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */; };
+		74AB42AE23348C7400912573 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB42AD23348C7400912573 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		74AB42A7233423BE00912573 /* SelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageView.swift; sourceTree = "<group>"; };
 		74AB42A92334240B00912573 /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
 		74AB42AB2334241A00912573 /* SelectPhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeaderCell.swift; sourceTree = "<group>"; };
+		74AB42AD23348C7400912573 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = marvel/View/AddPostView/Post.swift; sourceTree = SOURCE_ROOT; };
 		7C63C8C614660B5B2386C383 /* Pods_marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1F8FBEDAE546F12A61EC02 /* Pods-marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-marvel/Pods-marvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				7479952423090C86009A636F /* User.swift */,
+				74AB42AD23348C7400912573 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				745A4BE823066E0000ADC6E7 /* MainTabBarVC.swift in Sources */,
 				7488208A22CD941E0026999D /* ViewController.swift in Sources */,
 				748820A622CDA3AD0026999D /* RestEntity.swift in Sources */,
+				74AB42AE23348C7400912573 /* Post.swift in Sources */,
 				7456052922FE6033000C59F3 /* MultiPartFormBody.swift in Sources */,
 				745A4BF72306713500ADC6E7 /* ProfileVC.swift in Sources */,
 				7479951C23076B77009A636F /* ProfileHeaderCell.swift in Sources */,

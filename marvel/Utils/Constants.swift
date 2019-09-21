@@ -26,3 +26,4 @@ let CHECK_FOLLOW_URL = USERS_URL + "check-follow/"
 
 let POSTS_URL = BASE_URL + "/posts/"
 let UPLOAD_POST_URL = POSTS_URL + "upload/"
+let USER_POSTS_URL = POSTS_URL + "user/"

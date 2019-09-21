@@ -12,6 +12,13 @@ class GridCell: UICollectionViewCell {
     
     static let cellId = "gridCellId"
     
+    var post: Post? {
+        didSet {
+            guard let imageUrl = post?.imageUrl else { return }
+            postImageView.loadImage(with: imageUrl)
+        }
+    }
+    
     lazy var postImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill

@@ -14,13 +14,13 @@ class ProfileVC: UIViewController {
     
     var profileView: ProfileView!
     
-    //    var currentUid: Int?
-    
     var currentUser: User?
     
-    var url: URL!
+    var uid: String!
     
     var isLoggedInUser: Bool = false
+    
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +30,17 @@ class ProfileVC: UIViewController {
         
         if currentUser == nil {
             let currentUid = try? keyChain.get("id")
-            url = URL(string: USERS_URL + "\(currentUid!)/")!
+            uid = currentUid
             isLoggedInUser = true
-            fetchCurrentUserData(url: url)
         }
         
         if let currentUser = currentUser {
-            url = URL(string: USERS_URL + "\(currentUser.id)/")!
-            fetchCurrentUserData(url: url)
+            uid = "\(currentUser.id)"
             isLoggedInUser = false
         }
+        
+        fetchCurrentUserData(uid: uid!)
+        fetchPostsData(uid: uid)
     }
     
     func setupViews() {
@@ -63,15 +64,18 @@ class ProfileVC: UIViewController {
     
     // MARK: - Refresh
     @objc func handleRefresh() {
-        fetchCurrentUserData(url: url!)
+        fetchCurrentUserData(uid: uid!)
+        posts.removeAll(keepingCapacity: false)
+        fetchPostsData(uid: uid!)
         profileView.collectionView.reloadData()
     }
     
     // MARK: - API Calls
     
-    func fetchCurrentUserData(url: URL) {
+    func fetchCurrentUserData(uid: String) {
         print("Fetching current user data")
         let token = try? keyChain.get("auth_token")
+        let url = URL(string: USERS_URL + uid)!
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
         API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
@@ -97,7 +101,7 @@ class ProfileVC: UIViewController {
             }
         }
     }
-    
+    // follow
     func follow(id: Int, token: String, cell: ProfileHeaderCell) {
         let url = URL(string: FOLLOW_UNFOLLOW_URL)!
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
@@ -122,6 +126,7 @@ class ProfileVC: UIViewController {
         }
     }
     
+    // unfollow
     func unfollow(id: Int, token: String, cell: ProfileHeaderCell) {
         let url = URL(string: FOLLOW_UNFOLLOW_URL)!
         API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
@@ -145,6 +150,42 @@ class ProfileVC: UIViewController {
             }
         }
     }
+    
+    // user posts
+    func fetchPostsData(uid: String) {
+        print("Fetching User Posts....")
+        let token = try? keyChain.get("auth_token")
+        
+        let url = URL(string: USER_POSTS_URL)!
+        
+        API.httpBodyParameters.setValue(value: uid, forKey: "user_id")
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let decoder = JSONDecoder()
+                let postList = try? decoder.decode([Post].self, from: data)
+                guard let posts = postList else { return }
+                self.posts = posts
+            }
+            
+            DispatchQueue.main.async {
+                self.profileView.collectionView.reloadData()
+                self.profileView.collectionView.refreshControl?.endRefreshing()
+            }
+        }
+    }
 }
 
 extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -157,7 +198,7 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         if section == 0{
             return 1
         }
-        return 6
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -168,6 +209,7 @@ extension ProfileVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCell.cellId, for: indexPath) as! GridCell
+        cell.post = posts[indexPath.item]
         return cell
     }
     

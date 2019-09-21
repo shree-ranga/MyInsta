@@ -103,10 +103,10 @@ final class API {
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-                reset()
                 completion(ServerResults(withData: data, response: ServerResponse(fromURLResponse: response), error: error))
             })
             task.resume()
+            reset()
         }
     }
     
@@ -116,7 +116,6 @@ final class API {
             let sessionConfiguration = URLSessionConfiguration.default
             let session = URLSession(configuration: sessionConfiguration)
             let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-                reset()
                 guard let data = data else {
                     completion(nil)
                     return
@@ -124,6 +123,7 @@ final class API {
                 completion(data)
             })
             task.resume()
+            reset()
         }
     }
     
