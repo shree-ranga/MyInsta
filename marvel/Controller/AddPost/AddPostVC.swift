@@ -89,7 +89,7 @@ class AddPostVC: UIViewController {
             
             if let data = res.data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
+                print(json!)
             }
             
             DispatchQueue.main.async {

@@ -16,12 +16,27 @@ class FeedCell: UICollectionViewCell {
         didSet {
             guard let imageUrl = posts?.imageUrl else { return }
             guard let caption = posts?.caption else { return }
+            guard let owner = posts?.owner else { return }
+            
+            guard let username = owner.userName else { return }
             
             postImageView.loadImage(with: imageUrl)
             
-            let attributedText = NSMutableAttributedString(string: "username", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+            if caption.isEmpty {
+                commentsLabel.isHidden = true
+            }
+            
+            let attributedText = NSMutableAttributedString(string: "\(username)", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
             attributedText.append(NSAttributedString(string: " \(caption)", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
             commentsLabel.attributedText = attributedText
+            
+            usernameLabel.text = username
+            
+            if let imageUrl = owner.profileImageUrl {
+                profileImageView.loadImage(with: imageUrl)
+            } else {
+                profileImageView.image = UIImage(named: "default")
+            }
         }
     }
     

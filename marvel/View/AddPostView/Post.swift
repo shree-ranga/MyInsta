@@ -12,14 +12,14 @@ struct Post: Codable {
     let id: Int
     let imageUrl: String
     let caption: String
-    let ownerId: Int
+    let owner: User?
     let creationDate: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case imageUrl = "post_image"
         case caption = "caption"
-        case ownerId = "owner"
+        case owner = "owner"
         case creationDate = "created_at"
     }
 }

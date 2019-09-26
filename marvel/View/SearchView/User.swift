@@ -7,13 +7,11 @@
 //
 
 import Foundation
-import KeychainAccess
 
 struct User: Codable {
-    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     var id: Int
-    var userName: String
-    var fullName: String
+    var userName: String?
+    var fullName: String?
     var profileImageUrl: String?
     var bio: String?
     var numberOfFollowers: Int?

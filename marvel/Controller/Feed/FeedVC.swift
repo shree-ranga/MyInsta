@@ -86,6 +86,7 @@ class FeedVC: UIViewController {
     }
     
     func fetchFeed() {
+        print("Fetching User Feed....")
         let token = try? keyChain.get("auth_token")
 
         let url = URL(string: FEED_URL)!
