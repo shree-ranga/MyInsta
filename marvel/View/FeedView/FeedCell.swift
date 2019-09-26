@@ -12,6 +12,19 @@ class FeedCell: UICollectionViewCell {
     
     static let cellId = "feedCellId"
     
+    var posts: Post? {
+        didSet {
+            guard let imageUrl = posts?.imageUrl else { return }
+            guard let caption = posts?.caption else { return }
+            
+            postImageView.loadImage(with: imageUrl)
+            
+            let attributedText = NSMutableAttributedString(string: "username", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+            attributedText.append(NSAttributedString(string: " \(caption)", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            commentsLabel.attributedText = attributedText
+        }
+    }
+    
     lazy var profileImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
@@ -105,7 +118,7 @@ class FeedCell: UICollectionViewCell {
     
     lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 HOURS AGO"
+        label.text = "10 HOURS REMAINING"
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = UIColor.lightGray
         label.translatesAutoresizingMaskIntoConstraints = false

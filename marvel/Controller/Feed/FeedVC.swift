@@ -15,11 +15,14 @@ class FeedVC: UIViewController {
     
     var feedView: FeedView!
     
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         configureNavBar()
         configureCV()
+        fetchFeed()
     }
     
     func setupViews() {
@@ -67,6 +70,36 @@ class FeedVC: UIViewController {
             print("Logout Successful...")
         }
     }
+    
+    func fetchFeed() {
+        let token = try? keyChain.get("auth_token")
+
+        let url = URL(string: FEED_URL)!
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        
+        API.makeRequest(toURL: url, withHttpMethod: .get) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let decoder = JSONDecoder()
+                let postsList = try? decoder.decode([Post].self, from: data)
+                guard let posts = postsList else { return }
+                self.posts = posts
+            }
+            
+            DispatchQueue.main.async {
+                self.feedView.collectionView.reloadData()
+            }
+        }
+    }
 }
 
 extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -76,11 +109,12 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.cellId, for: indexPath) as! FeedCell
+        cell.posts = posts[indexPath.item]
         return cell
     }
     
