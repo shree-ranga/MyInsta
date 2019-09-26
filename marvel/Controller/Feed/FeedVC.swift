@@ -38,10 +38,24 @@ class FeedVC: UIViewController {
     func configureCV() {
         feedView.collectionView.delegate = self
         feedView.collectionView.dataSource = self
+        
+        // cell registration
         feedView.collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.cellId)
+        
+        // refresh control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        feedView.collectionView.refreshControl = refreshControl
     }
     
     // MARK: - Handlers
+    @objc func handleRefresh() {
+        posts.removeAll(keepingCapacity: false)
+        fetchFeed()
+        feedView.collectionView.reloadData()
+    }
+    
+    
     @objc func handleLogout() {
         let token = try? keyChain.get("auth_token")
         
@@ -97,6 +111,7 @@ class FeedVC: UIViewController {
             
             DispatchQueue.main.async {
                 self.feedView.collectionView.reloadData()
+                self.feedView.collectionView.refreshControl?.endRefreshing()
             }
         }
     }
