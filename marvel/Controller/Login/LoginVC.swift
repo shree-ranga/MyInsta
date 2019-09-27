@@ -52,6 +52,7 @@ extension LoginVC: LoginViewDelegate {
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let dict = jsonResponse as? Dictionary<String, AnyObject> else { return }
+                //TODO: - Handle incorrect password
                 let token = dict["token"] as! String
                 let id = dict["id"] as! Int
                 self.keyChain["auth_token"] = token

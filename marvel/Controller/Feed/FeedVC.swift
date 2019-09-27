@@ -57,38 +57,16 @@ class FeedVC: UIViewController {
     
     
     @objc func handleLogout() {
-        let token = try? keyChain.get("auth_token")
-        
-        guard let logoutUrl = URL(string: LOGOUT_URL) else { return }
-        
-        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
-        
-        // first delete the token from the server
-        API.makeRequest(toURL: logoutUrl, withHttpMethod: .delete) { (res) in
-            if let error = res.error {
-                print("Unable to logout -", error.localizedDescription)
-                return
-            }
-            
-            if let response = res.response {
-                print(response.httpStatusCode)
-            }
-            
-            DispatchQueue.main.async {
-                // delete the token from the keychain
-                self.keyChain["auth_token"] = nil
-                self.keyChain["id"] = nil
-                let loginVC = LoginVC()
-                self.present(loginVC, animated: true, completion: nil)
-            }
-            print("Logout Successful...")
-        }
+        logout()
     }
     
+    // MARK: - API calls
+    
+    // fetch posts
     func fetchFeed() {
         print("Fetching User Feed....")
         let token = try? keyChain.get("auth_token")
-
+        
         let url = URL(string: FEED_URL)!
         
         API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
@@ -114,6 +92,36 @@ class FeedVC: UIViewController {
                 self.feedView.collectionView.reloadData()
                 self.feedView.collectionView.refreshControl?.endRefreshing()
             }
+        }
+    }
+    
+    // logout
+    func logout() {
+        let token = try? keyChain.get("auth_token")
+        
+        guard let logoutUrl = URL(string: LOGOUT_URL) else { return }
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        
+        // first delete the token from the server
+        API.makeRequest(toURL: logoutUrl, withHttpMethod: .delete) { (res) in
+            if let error = res.error {
+                print("Unable to logout -", error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            DispatchQueue.main.async {
+                // delete the token from the keychain
+                self.keyChain["auth_token"] = nil
+                self.keyChain["id"] = nil
+                let loginVC = LoginVC()
+                self.present(loginVC, animated: true, completion: nil)
+            }
+            print("Logout Successful...")
         }
     }
 }

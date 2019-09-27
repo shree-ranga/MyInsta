@@ -13,6 +13,7 @@ class LoginView: UIView {
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
+        tf.textColor = UIColor.black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 16)
@@ -26,6 +27,7 @@ class LoginView: UIView {
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.textColor = UIColor.black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 16)
