@@ -24,3 +24,10 @@ protocol ProfileCellDelegate {
     func handleFollowersTapped(for cell: ProfileHeaderCell)
     func handleFollowingTapped(for cell: ProfileHeaderCell)
 }
+
+protocol FeedCellDelegate {
+    func handleImageOrUsernameTapped(for cell: FeedCell)
+    func handleOptionsTapped(for cell: FeedCell)
+    func handleLikeTapped(for cell: FeedCell)
+    func handleCommentsTapped(for cell: FeedCell)
+}

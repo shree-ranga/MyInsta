@@ -10,16 +10,18 @@ import Foundation
 
 struct Post: Codable {
     let id: Int
-    let imageUrl: String
-    let caption: String
+    let imageUrl: String?
+    let caption: String?
     let owner: User?
-    let creationDate: String
+    let likesCount: Int?
+    let creationDate: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case imageUrl = "post_image"
         case caption = "caption"
         case owner = "owner"
+        case likesCount = "likes_count"
         case creationDate = "created_at"
     }
 }

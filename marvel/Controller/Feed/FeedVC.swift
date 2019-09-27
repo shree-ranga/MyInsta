@@ -118,6 +118,7 @@ class FeedVC: UIViewController {
     }
 }
 
+// MARK: - CollectionView delegate methods
 extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -130,6 +131,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.cellId, for: indexPath) as! FeedCell
+        cell.delegate = self
         cell.posts = posts[indexPath.item]
         return cell
     }
@@ -140,5 +142,24 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+// MARK: - Feed cell delegate
+extension FeedVC: FeedCellDelegate {
+    func handleImageOrUsernameTapped(for cell: FeedCell) {
+        print("image or username tappes")
+    }
+    
+    func handleOptionsTapped(for cell: FeedCell) {
+        print("options tapped")
+    }
+    
+    func handleLikeTapped(for cell: FeedCell) {
+        print("like tapped")
+    }
+    
+    func handleCommentsTapped(for cell: FeedCell) {
+        print("comments tapped")
     }
 }

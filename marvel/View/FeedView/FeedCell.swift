@@ -11,12 +11,14 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     static let cellId = "feedCellId"
+    var delegate: FeedCellDelegate?
     
     var posts: Post? {
         didSet {
             guard let imageUrl = posts?.imageUrl else { return }
             guard let caption = posts?.caption else { return }
             guard let owner = posts?.owner else { return }
+            guard let likesCount = posts?.likesCount else { return }
             
             guard let username = owner.userName else { return }
             
@@ -24,11 +26,14 @@ class FeedCell: UICollectionViewCell {
             
             if caption.isEmpty {
                 commentsLabel.isHidden = true
+            } else {
+                let attributedText = NSMutableAttributedString(string: "\(username)", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+                attributedText.append(NSAttributedString(string: " \(caption)", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+                commentsLabel.isHidden = false
+                commentsLabel.attributedText = attributedText
             }
             
-            let attributedText = NSMutableAttributedString(string: "\(username)", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-            attributedText.append(NSAttributedString(string: " \(caption)", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
-            commentsLabel.attributedText = attributedText
+            
             
             usernameLabel.text = username
             
@@ -37,6 +42,8 @@ class FeedCell: UICollectionViewCell {
             } else {
                 profileImageView.image = UIImage(named: "default")
             }
+            
+            likesLabel.text = "\(likesCount) likes"
         }
     }
     
@@ -115,7 +122,7 @@ class FeedCell: UICollectionViewCell {
     
     lazy var likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 likes"
+        //        label.text = "0 likes"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -146,7 +153,7 @@ class FeedCell: UICollectionViewCell {
     }
     
     func setupViews() {
-//        backgroundColor = .white
+        //        backgroundColor = .white
         
         addSubview(profileImageView)
         profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
@@ -186,19 +193,19 @@ class FeedCell: UICollectionViewCell {
     
     // MARK: - Handlers
     @objc func handleImageOrUsernameTapped() {
-        print("handleImageOrUsernameTapped")
+        delegate?.handleImageOrUsernameTapped(for: self)
     }
     
     @objc func handleOptionsTapped() {
-        print("handleOptionsTapped")
+        delegate?.handleOptionsTapped(for: self)
     }
     
     @objc func handleLikeTapped() {
-        print("handleLikeTapped")
+        delegate?.handleLikeTapped(for: self)
     }
     
     @objc func handleCommentsTapped() {
-        print("handleCommentsTapped")
+        delegate?.handleCommentsTapped(for: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
