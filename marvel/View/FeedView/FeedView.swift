@@ -26,10 +26,10 @@ class FeedView: UIView {
     
     func setupViews() {
         addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -50,6 +50,7 @@ extension MainTabBarVC: UITabBarControllerDelegate {
             let selectImageVC = SelectImageVC()
             let navController = UINavigationController(rootViewController: selectImageVC)
             navController.navigationBar.tintColor = UIColor.black
+            navController.modalPresentationStyle = .fullScreen
             present(navController, animated: true, completion: nil)
             return false
         }

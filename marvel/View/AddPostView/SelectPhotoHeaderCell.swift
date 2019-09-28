@@ -29,10 +29,10 @@ class SelectPhotoHeaderCell: UICollectionViewCell {
         backgroundColor = .lightGray
         
         addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        photoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        photoImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        photoImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        photoImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

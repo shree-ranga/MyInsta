@@ -119,6 +119,7 @@ class FeedVC: UIViewController {
                 self.keyChain["auth_token"] = nil
                 self.keyChain["id"] = nil
                 let loginVC = LoginVC()
+                loginVC.modalPresentationStyle = .fullScreen
                 self.present(loginVC, animated: true, completion: nil)
             }
             print("Logout Successful...")
@@ -157,6 +158,10 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, 
 extension FeedVC: FeedCellDelegate {
     func handleImageOrUsernameTapped(for cell: FeedCell) {
         print("image or username tappes")
+        guard let user = cell.posts?.owner else { return }
+        let profileVC = ProfileVC()
+        profileVC.currentUser = user
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     func handleOptionsTapped(for cell: FeedCell) {
@@ -164,7 +169,17 @@ extension FeedVC: FeedCellDelegate {
     }
     
     func handleLikeTapped(for cell: FeedCell) {
-        print("like tapped")
+        let token = try? keyChain.get("auth_token")
+
+        guard let post = cell.posts else { return }
+        let postId = post.id
+        
+        let url = URL(string: LIKE_URL)!
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        
+        API.httpBodyParameters.setValue(value: "\(postId)", forKey: "post")
     }
     
     func handleCommentsTapped(for cell: FeedCell) {

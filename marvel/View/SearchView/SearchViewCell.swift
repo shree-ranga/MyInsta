@@ -55,14 +55,14 @@ class SearchViewCell: UICollectionViewCell {
     func setupViews() {
         // MARK: - profile image view anchors
         addSubview(profileImageView)
-        profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: profileImageViewHeight).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: profileImageViewHeight).isActive = true
         
         // MARK: - user name label anchors
         addSubview(userNameLabel)
-        userNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+        userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
         userNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 12).isActive = true
         
         // MARK: - full name label anchors

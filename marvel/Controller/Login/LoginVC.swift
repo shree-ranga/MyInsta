@@ -60,6 +60,7 @@ extension LoginVC: LoginViewDelegate {
                 print("Login Successful....")
                 DispatchQueue.main.async {
                     let mainVC = MainTabBarVC()
+                    mainVC.modalPresentationStyle = .fullScreen
                     self.present(mainVC, animated: true, completion: nil)
                 }
             } catch let error {

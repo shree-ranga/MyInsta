@@ -142,8 +142,8 @@ class ProfileHeaderCell: UICollectionViewCell {
         
         // MARK: - profile Image anchors
         addSubview(profileImageView)
-        profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
-        profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: profileImageViewWidthHeight).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: profileImageViewWidthHeight).isActive = true
         
@@ -153,14 +153,14 @@ class ProfileHeaderCell: UICollectionViewCell {
         //        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: -8).isActive = true
         //        fullNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         fullNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
-        fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         
         // MARK: - follow button anchors
         addSubview(followButton)
         //        followButton.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 16).isActive = true
         followButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -4).isActive = true
         followButton.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 16).isActive = true
-        followButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        followButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         //        followButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         followButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         

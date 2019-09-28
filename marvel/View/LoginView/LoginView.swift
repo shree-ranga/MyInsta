@@ -85,8 +85,8 @@ class LoginView: UIView {
         addSubview(loginStackView)
 
         loginStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 80).isActive = true
-        loginStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
-        loginStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
+        loginStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
+        loginStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
         loginStackView.heightAnchor.constraint(equalToConstant: 180).isActive = true
     }
     

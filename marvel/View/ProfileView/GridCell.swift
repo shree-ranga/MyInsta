@@ -37,10 +37,10 @@ class GridCell: UICollectionViewCell {
         
         // image anchors
         addSubview(postImageView)
-        postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        postImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        postImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        postImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        postImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        postImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        postImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        postImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

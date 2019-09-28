@@ -156,8 +156,9 @@ class FeedCell: UICollectionViewCell {
         //        backgroundColor = .white
         
         addSubview(profileImageView)
-        profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+
+        profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
@@ -166,14 +167,14 @@ class FeedCell: UICollectionViewCell {
         usernameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         
         addSubview(optionsButton)
-        optionsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        optionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         optionsButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
         
         addSubview(postImageView)
         postImageView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
-        postImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        postImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        postImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        postImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        postImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
         
         configureActionButtons()
         
@@ -184,7 +185,7 @@ class FeedCell: UICollectionViewCell {
         addSubview(commentsLabel)
         commentsLabel.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 8).isActive = true
         commentsLabel.leadingAnchor.constraint(equalTo: likesLabel.leadingAnchor, constant: 0).isActive = true
-        commentsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        commentsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         
         addSubview(timeLabel)
         timeLabel.topAnchor.constraint(equalTo: commentsLabel.bottomAnchor, constant: 8).isActive = true

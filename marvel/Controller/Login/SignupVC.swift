@@ -136,6 +136,7 @@ extension SignupVC: SignupViewDelegate {
                 print("Registration Successful...")
                 DispatchQueue.main.async {
                     let mainVC = MainTabBarVC()
+                    mainVC.modalPresentationStyle = .fullScreen
                     self.present(mainVC, animated: true, completion: nil)
                 }
                 

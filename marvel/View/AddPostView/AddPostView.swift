@@ -37,14 +37,14 @@ class AddPostView: UIView {
         
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
-        photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
+        photoImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12).isActive = true
         photoImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         photoImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         addSubview(captionTextView)
         captionTextView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: 0).isActive = true
         captionTextView.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 12).isActive = true
-        captionTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        captionTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -12).isActive = true
         captionTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
