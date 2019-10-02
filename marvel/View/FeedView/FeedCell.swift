@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class FeedCell: UICollectionViewCell {
     
     static let cellId = "feedCellId"
+    
     var delegate: FeedCellDelegate?
+    
+    let keyChain = Keychain(server: BASE_URL, protocolType: .http)
     
     var posts: Post? {
         didSet {
@@ -33,8 +37,6 @@ class FeedCell: UICollectionViewCell {
                 commentsLabel.attributedText = attributedText
             }
             
-            
-            
             usernameLabel.text = username
             
             if let imageUrl = owner.profileImageUrl {
@@ -44,6 +46,8 @@ class FeedCell: UICollectionViewCell {
             }
             
             likesLabel.text = "\(likesCount) likes"
+            
+            configureLikeButton()
         }
     }
     
@@ -156,7 +160,7 @@ class FeedCell: UICollectionViewCell {
         //        backgroundColor = .white
         
         addSubview(profileImageView)
-
+        
         profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         profileImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -190,6 +194,55 @@ class FeedCell: UICollectionViewCell {
         addSubview(timeLabel)
         timeLabel.topAnchor.constraint(equalTo: commentsLabel.bottomAnchor, constant: 8).isActive = true
         timeLabel.leadingAnchor.constraint(equalTo: commentsLabel.leadingAnchor, constant: 0).isActive = true
+    }
+    
+    func configureLikeButton() {
+        guard let post = posts else { return }
+        let postId = post.id
+        checkIfPostLiked(id: postId) { (liked) in
+            if liked {
+                DispatchQueue.main.async {
+                    self.likeButton.setImage(UIImage(named: "like_selected"), for: .normal)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.likeButton.setImage(UIImage(named: "like_unselected"), for: .normal)
+                }
+            }
+        }
+    }
+    
+    // MARK: - API
+    func checkIfPostLiked(id: Int, completion: @escaping (Bool) -> Void) {
+        let token = try? keyChain.get("auth_token")
+        
+        let url = URL(string: CHECK_POST_LIKE_URL)!
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        
+        API.httpBodyParameters.setValue(value: id, forKey: "post_id")
+        
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if let resp = res.response {
+                print(resp.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                guard let dict = json as? [String: Bool] else { return }
+                if dict["liked"]! == true {
+                    completion(true)
+                } else if dict["liked"] == false {
+                    completion(false)
+                }
+            }
+        }
     }
     
     // MARK: - Handlers

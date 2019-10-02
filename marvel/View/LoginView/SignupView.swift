@@ -98,10 +98,10 @@ class SignupView: UIView {
         
         configureViewComponents()
         
-        profileImageButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        profileImageButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         profileImageButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
-        profileImageButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
-        profileImageButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        profileImageButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        profileImageButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         signinButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
         signinButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true

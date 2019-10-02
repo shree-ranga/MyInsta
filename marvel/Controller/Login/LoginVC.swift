@@ -72,6 +72,7 @@ extension LoginVC: LoginViewDelegate {
     
     func handleSignup(for view: LoginView) {
         let signupVC = SignupVC()
+        signupVC.modalPresentationStyle = .fullScreen
         present(signupVC, animated: true, completion: nil)
     }
 }

@@ -63,8 +63,9 @@ extension SignupVC: SignupViewDelegate {
     }
     
     func handleSignin(for view: SignupView) {
-        let loginVC = LoginVC()
-        present(loginVC, animated: true, completion: nil)
+//        let loginVC = LoginVC()
+//        present(loginVC, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func handleSignup(for view: SignupView) {

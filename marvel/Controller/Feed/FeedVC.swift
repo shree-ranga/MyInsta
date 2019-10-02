@@ -125,6 +125,68 @@ class FeedVC: UIViewController {
             print("Logout Successful...")
         }
     }
+    
+    func like(cell: FeedCell) {
+        let token = try? keyChain.get("auth_token")
+
+        guard let post = cell.posts else { return }
+        let postId = post.id
+        
+        let url = URL(string: LIKE_URL)!
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        
+        API.httpBodyParameters.setValue(value: "\(postId)", forKey: "post_id")
+        
+        API.makeRequest(toURL: url, withHttpMethod: .post) { (res) in
+            if let error = res.error {
+                print("Unable to like", error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            if let data = res.data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                print(json!)
+            }
+            DispatchQueue.main.async {
+                cell.likeButton.setImage(UIImage(named: "like_selected"), for: .normal)
+            }
+        }
+    }
+    
+    func unlike(cell: FeedCell) {
+        let token = try? keyChain.get("auth_token")
+
+        guard let post = cell.posts else { return }
+        let postId = post.id
+        
+        let url = URL(string: UNLIKE_URL)!
+        
+        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
+        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
+        
+        API.httpBodyParameters.setValue(value: "\(postId)", forKey: "post_id")
+        
+        API.makeRequest(toURL: url, withHttpMethod: .delete) { (res) in
+            if let error = res.error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if let response = res.response {
+                print(response.httpStatusCode)
+            }
+            
+            DispatchQueue.main.async {
+                cell.likeButton.setImage(UIImage(named: "like_unselected"), for: .normal)
+            }
+        }
+    }
 }
 
 // MARK: - CollectionView delegate methods
@@ -169,17 +231,13 @@ extension FeedVC: FeedCellDelegate {
     }
     
     func handleLikeTapped(for cell: FeedCell) {
-        let token = try? keyChain.get("auth_token")
-
-        guard let post = cell.posts else { return }
-        let postId = post.id
-        
-        let url = URL(string: LIKE_URL)!
-        
-        API.requestHttpHeaders.setValue(value: "Token \(token!)", forKey: "Authorization")
-        API.requestHttpHeaders.setValue(value: "application/json", forKey: "Content-Type")
-        
-        API.httpBodyParameters.setValue(value: "\(postId)", forKey: "post")
+        if cell.likeButton.image(for: .normal) == UIImage(named: "like_selected") {
+            unlike(cell: cell)
+            cell.posts?.likesCount! -= 1
+        } else {
+            like(cell: cell)
+            cell.posts?.likesCount! += 1
+        }
     }
     
     func handleCommentsTapped(for cell: FeedCell) {

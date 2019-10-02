@@ -13,8 +13,9 @@ struct Post: Codable {
     let imageUrl: String?
     let caption: String?
     let owner: User?
-    let likesCount: Int?
+    var likesCount: Int?
     let creationDate: String?
+//    var didCurrentUserLike: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id = "id"

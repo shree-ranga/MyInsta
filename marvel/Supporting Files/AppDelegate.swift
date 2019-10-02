@@ -36,12 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 //        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().backgroundColor = UIColor.clear
+        UINavigationBar.appearance().backgroundColor = UIColor.white
         UINavigationBar.appearance().isTranslucent = false
         
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundColor = UIColor.clear
+        UITabBar.appearance().backgroundColor = UIColor.white
         UITabBar.appearance().isTranslucent = false
 //        let mainVC = LoginVC()
 //        window?.rootViewController = mainVC
