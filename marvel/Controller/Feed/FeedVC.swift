@@ -231,7 +231,7 @@ extension FeedVC: FeedCellDelegate {
     }
     
     func handleLikeTapped(for cell: FeedCell) {
-        if cell.likeButton.image(for: .normal) == UIImage(named: "like_selected") {
+        if cell.likeButton.image(for: .normal) === UIImage(named: "like_selected") {
             unlike(cell: cell)
             cell.posts?.likesCount! -= 1
         } else {
